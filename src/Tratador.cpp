@@ -1,4 +1,5 @@
 #include "Tratador.h"
+#include <limits>
 
 namespace adrd {
 
@@ -6,16 +7,16 @@ namespace adrd {
 	{}
 
 	Tratador::Tratador(int id_, std::string nome_, std::string cpf_, short idade_,
-					short tipo_sanguineo_, char fatorRH_, std::string especialidade_):
+					std::string tipo_sanguineo_, char fatorRH_, std::string especialidade_):
 	Funcionario(id_, nome_, cpf_, idade_, tipo_sanguineo_, fatorRH_, especialidade_)
 	{}
 
 	Tratador::~Tratador()
 	{}
 
-	void
-	Tratador::print(std::ostream& out){
-		out << "# Ficha de Funcionário"
+	std::ostream&
+	Tratador::print(std::ostream& out) const{
+		out << "#  >>> Ficha de Funcionário <<<" << std::endl
 			<< "# ID: " << this->f_id << std::endl
 			<< "# Função: " << this->funcao << std::endl
 			<< "# Nome: " << this->f_nome << std::endl
@@ -24,32 +25,39 @@ namespace adrd {
 			<< "# Tipo Sanguíneo: " << this->f_tipo_sanguineo
 			<< this->f_fatorRH << std::endl
 			<< "# Especialidade: " << this->f_especialidade << std::endl;
+
+			return out;
 	}
 
-	void
+	std::istream&
 	Tratador::read(std::istream& in){
 		std::cout << "# Insira as informações do tratador" << std::endl;
-		this->this->f_id = Funcionario::getCounter();
-		std::cout << "# Nome: "
-		in >> this->f_nome;
-		std::cout << "# CPF: "
-		in >> this->f_cpf;
-		std::cout << "# Idade: "
+		this->f_id = getCounter();
+		std::cout << "# Nome: ";
+		std::getline(in, this->f_nome);
+		std::cout << "# CPF: ";
+		std::getline(in, this->f_cpf);
+		std::cout << "# Idade: ";
 		in >> this->f_idade;
-		std::cout << "# Tipo Sanguíneo: "
+		std::cout << "# Tipo Sanguíneo: ";
 		in >> this->f_tipo_sanguineo;
-		std::cout << "# Fator RH: "
+		std::cout << "# Fator RH: ";
 		in >> this->f_fatorRH;
-		std::cout << "# Especialidade: "
-		in >> this->f_especialidade;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Especialidade: ";
+		std::getline(in, this->f_especialidade);
+
+		return in;
 	}
 
-	void save(ostream& out){
+	// void
+	// Tratador::save(std::ostream& out) const{
 
-	}
+	// }
 
-	void load(istream& in){
+	// void 
+	// Tratador::load(std::istream& in) const{
 
-	}
+	// }
 
 } // adrd

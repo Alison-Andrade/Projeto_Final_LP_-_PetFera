@@ -9,10 +9,12 @@ namespace adrd {
 	protected:
 		std::string funcao = "Veterinário";
 		
-		void print(std::ostream& out);
-		void read(std::istream in);
+		std::ostream& print(std::ostream& out) const;
+		std::istream& read(std::istream& in);
 	public:
 		Veterinario();
+		Veterinario(int id_, std::string nome_, std::string cpf_, short idade_,
+					std::string tipo_sanguineo_, char fatorRH_, std::string especialidade_);
 		~Veterinario();
 	};
 
