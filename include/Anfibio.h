@@ -2,20 +2,21 @@
 #define ANFIBIO_H
 
 #include "Animal.h"
-#include "Nativo.h"
-#include "Exotico.h"
 
-namespace ardr {
+namespace adrd {
 
-	class Anfibio : public Animal{
+	class Anfibio : public Animal {
 	protected:
 		int total_mudas;
 		std::string ultima_muda;
+
+		std::istream& read(std::istream& in);
+		std::ostream& print(std::ostream& out);
 	public:
 		Anfibio();
 		Anfibio(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_, int total_mudas_, std::string ultima_muda_);
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_, int total_mudas_, std::string ultima_muda_);
 		~Anfibio();
 
 		//Getters

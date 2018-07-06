@@ -11,10 +11,10 @@ int main(int argc, char const *argv[]){
 	std::cin >> *t;
 	std::cout << *t;
 
-	std::unique_ptr<adrd::Funcionario> t2(new adrd::Veterinario);
+	// std::unique_ptr<adrd::Funcionario> t2(new adrd::Veterinario);
 
-	std::cin >> *t2;
-	std::cout << *t2;
+	// std::cin >> *t2;
+	// std::cout << *t2;
 
 	return 0;
 }

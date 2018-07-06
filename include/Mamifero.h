@@ -8,6 +8,9 @@ namespace adrd {
 	class Mamifero {
 	protected:
 		std::string cor_pelo;
+
+		std::istream& read(istream& in);
+		std::ostream& print(ostream& out);
 	public:
 		Mamifero();
 		Mamifero(int id_, std::string classe_, std::string nome_, std::string cientifico_,

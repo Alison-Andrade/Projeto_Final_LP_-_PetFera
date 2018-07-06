@@ -2,15 +2,19 @@
 
 namespace adrd {
 
-	Animal::Animal()
-	{}
+	unsigned Animal::counterID = 0;
+
+	Animal::Animal(){
+		this->counterID++;
+	}
 
 	Animal::Animal(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_):
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_):
 	id(id_), classe(classe_), nome(nome_), cientifico(cientifico_), sexo(sexo_), tamanho(tamanho_),
-	dieta(dieta_), veterinario(veterinario_), tratador(tratador_), batismo(batismo_)
-	{}
+	dieta(dieta_), veterinario(veterinario_), tratador(tratador_), batismo(batismo_){
+		this->counterID++;
+	}
 
 	Animal::~Animal()
 	{}
@@ -51,12 +55,12 @@ namespace adrd {
 		return this->dieta;
 	}
 
-	Veterinario 
+	int 
 	Animal::getVeterinario(){
 		return this->veterinario;
 	}
 
-	Tratador 
+	int 
 	Animal::getTratador(){
 		return this->tratador;
 	}
@@ -103,18 +107,33 @@ namespace adrd {
 	}
 
 	void 
-	Animal::setVeterinario(Veterinario veterinario_){
+	Animal::setVeterinario(int veterinario_){
 		this->veterinario = veterinario_;
 	}
 
 	void 
-	Animal::setTratador(Tratador tratador_){
+	Animal::setTratador(int tratador_){
 		this->tratador = tratador_;
 	}
 
 	void 
 	Animal::setBatismo(std::string batismo_){
 		this->batismo = batismo_;
+	}
+
+	int
+	Animal::getCounter(){
+		return counterID;
+	}
+
+	//Sobrecargas
+	std::istream& operator>>(std::istream& in, Animal& a){
+		return a.read(in);
+	}
+	
+
+	std::ostream& operator<<(std::ostream& out, Animal& a){
+		return a.print(out);
 	}
 
 } // adrd

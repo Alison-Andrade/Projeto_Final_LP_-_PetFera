@@ -9,6 +9,9 @@ namespace adrd {
 	protected:
 		int tamanho_bico;
 		int envergadura;
+
+		std::istream& read(istream& in);
+		std::ostream& print(ostream& out);
 	public:
 		Ave();
 		Ave(int id_, std::string classe_, std::string nome_, std::string cientifico_,

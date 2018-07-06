@@ -1,9 +1,14 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
+#include <iostream>
+#include <limits>
+
 namespace adrd {
 
 	class Animal {
+	private:
+		static unsigned counterID;
 	protected:
 		int id;
 		std::string classe;
@@ -11,18 +16,22 @@ namespace adrd {
 		std::string cientifico;
 		char sexo;
 		float tamanho;
-		std::string dieta_;
-		Veterinario veterinario;
-		Tratador tratador;
+		std::string dieta;
+		int veterinario;
+		int tratador;
 		std::string batismo;
+
+		virtual std::istream& read(std::istream& in) = 0;
+		virtual std::ostream& print(std::ostream& out) = 0;
 	public:
 		Animal();
 		Animal(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_);
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_);
 		~Animal();
 
 		// Getters
+		static int getCounter();
 		int getID();
 		std::string getClasse();
 		std::string getNome();
@@ -30,8 +39,8 @@ namespace adrd {
 		char getSexo();
 		float getTamanho();
 		std::string getDieta();
-		Veterinario getVeterinario();
-		Tratador getTratador();
+		int getVeterinario();
+		int getTratador();
 		std::string getBatismo();
 
 		//Setters
@@ -42,9 +51,13 @@ namespace adrd {
 		void setSexo(char sexo_);
 		void setTamanho(float tamanho_);
 		void setDieta(std::string dieta_);
-		void setVeterinario(Veterinario veterinario_);
-		void setTratador(Tratador tratador_);
+		void setVeterinario(int veterinario_);
+		void setTratador(int tratador_);
 		void setBatismo(std::string batismo_);
+
+		//Sobrecargas
+		friend std::istream& operator>>(std::istream& in, Animal& a);
+		friend std::ostream& operator<<(std::ostream& out, Animal& a);
 	};
 
 } // adrd
