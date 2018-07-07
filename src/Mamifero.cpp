@@ -75,21 +75,21 @@ namespace adrd {
 
 	void 
 	Mamifero::save(std::string sf){
-		std::ofstream file;
+		std::ofstream file(sf, std::ofstream::app);
 
-		file.open(sf, std::ofstream::app);
-
-		file << this->id << std::endl
-			<< ";" << this->classe
-			<< ";" << this->nome
-			<< ";" << this->sexo
-			<< ";" << this->cientifico
-			<< ";" << this->tamanho
-			<< ";" << this->dieta
-			<< ";" << this->veterinario
-			<< ";" << this->tratador
-			<< ";" << this->batismo
-			<< ";" << this->cor_pelo << std::endl;
+		if(file) {
+			file << this->id << std::endl
+				<< ";" << this->classe
+				<< ";" << this->nome
+				<< ";" << this->sexo
+				<< ";" << this->cientifico
+				<< ";" << this->tamanho
+				<< ";" << this->dieta
+				<< ";" << this->veterinario
+				<< ";" << this->tratador
+				<< ";" << this->batismo
+				<< ";" << this->cor_pelo << std::endl;
+		}
 
 		file.close();
 

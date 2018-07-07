@@ -52,21 +52,21 @@ namespace adrd {
 
 	void 
 	Tratador::save(std::string sf){
-		std::ofstream file;
+		std::ofstream file(sf, std::ofstream::app);
 
-		file.open(sf, std::ofstream::app);
+		if(file) {
+			file << this->f_id << ";" 
+				<< this->f_nome << ";" 
+				<< this->f_cpf << ";" 
+				<< this->f_idade << ";" 
+				<< this->f_tipo_sanguineo << ";" 
+				<< this->f_idade << ";" 
+				<< this->f_fatorRH << ";" 
+				<< this->f_especialidade << ";"
+				<< this->funcao << std::endl;
 
-		file << this->f_id << ";" 
-			<< this->f_nome << ";" 
-			<< this->f_cpf << ";" 
-			<< this->f_idade << ";" 
-			<< this->f_tipo_sanguineo << ";" 
-			<< this->f_idade << ";" 
-			<< this->f_fatorRH << ";" 
-			<< this->f_especialidade << ";"
-			<< this->funcao << std::endl;
-
-		std::cout << "Funcionário cadastrado..." << std::endl << std::endl;
+			std::cout << "Funcionário cadastrado..." << std::endl << std::endl;
+		}
 
 		file.close();
 

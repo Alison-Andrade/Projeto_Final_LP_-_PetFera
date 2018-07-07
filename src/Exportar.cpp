@@ -8,7 +8,7 @@ void showHelp(){
 
 int main(int argc, char const *argv[]){
 
-	if(argc < 3 || argc%2 == 0) {
+	if(argc < 3) {
 		showHelp();
 		exit(-1);
 	}
@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]){
 			exit(-1);
 		}else if(aux == "-c") {
 			cFlag = 1;
-			if(argv[i+1] != nullptr) {
+			if(i+1 < argc) {
 				classe = argv[++i];
 			}else{
 				std::cout << "-c espera uma classe de animal como entrada.";
@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]){
 			}
 		}else if(aux == "-v") {
 			cFlag = 1;
-			if(argv[i+1] != nullptr) {
+			if(i+1 < argc) {
 				veterinario = argv[++i];
 			}else{
 				std::cout << "-v espera id do veterinário como entrada.";
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 			}
 		}else if(aux == "-t") {
 			cFlag = 1;
-			if(argv[i+1] != nullptr) {
+			if(i+1 < argc) {
 				tratador = argv[++i];
 			}else{
 				std::cout << "-t espera id do tratador como entrada.";
