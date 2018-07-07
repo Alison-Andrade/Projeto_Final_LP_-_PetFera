@@ -41,8 +41,8 @@ namespace adrd {
 		void loadAnimais();
 		void loadFuncionarios();
 
-		std::map<int, std::shared_ptr<Animal>> getAnimais();
-		std::map<int, std::shared_ptr<Funcionario>> getFuncionarios();
+		std::map<int, std::shared_ptr<Animal>>& getAnimais();
+		std::map<int, std::shared_ptr<Funcionario>>& getFuncionarios();
 		
 	};
 } // adrd

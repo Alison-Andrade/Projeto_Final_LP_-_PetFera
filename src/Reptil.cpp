@@ -107,7 +107,7 @@ namespace adrd {
 		std::ofstream file(sf, std::ofstream::app);
 
 		if(file) {
-			file << this->id << std::endl
+			file << this->id
 				<< ";" << this->classe
 				<< ";" << this->nome
 				<< ";" << this->sexo

@@ -347,12 +347,12 @@ namespace adrd {
 		}
 	}
 
-	std::map<int, std::shared_ptr<Funcionario>> 
+	std::map<int, std::shared_ptr<Funcionario>>& 
 	mPetFera::getFuncionarios(){
 		return this->mFuncionario;
 	}
 
-	std::map<int, std::shared_ptr<Animal>>
+	std::map<int, std::shared_ptr<Animal>>&
 	mPetFera::getAnimais(){
 		return this->mAnimal;
 	}
