@@ -16,6 +16,8 @@ namespace adrd {
 		Veterinario(int id_, std::string nome_, std::string cpf_, short idade_,
 					std::string tipo_sanguineo_, char fatorRH_, std::string especialidade_);
 		~Veterinario();
+
+		void save(std::string sf);
 	};
 
 } // adrd

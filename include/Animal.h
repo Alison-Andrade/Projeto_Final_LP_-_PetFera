@@ -4,7 +4,8 @@
 #include <iostream>
 #include <limits>
 
-#include <myExceptions.h>
+#include "myExceptions.h"
+#include "auxiliar.h"
 
 namespace adrd {
 
@@ -61,7 +62,7 @@ namespace adrd {
 		friend std::istream& operator>>(std::istream& in, Animal& a);
 		friend std::ostream& operator<<(std::ostream& out, Animal& a);
 
-		virtual void save() = 0;
+		virtual void save(std::string sf) = 0;
 	};
 
 } // adrd

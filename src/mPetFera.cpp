@@ -207,20 +207,19 @@ namespace adrd {
 				break;
 			case 1:
 				this->listarAnimais();
+				this->menu();
 				break;
 			case 2:
 				this->cadastrarAnimal();
 				this->menu();
 				break;
 			case 3:
-				this->cadastrarFuncionario();
+				this->listarFunionarios();
 				this->menu();
 				break;
 			case 4:
-				break;
-			case 5:
-				break;
-			case 6:
+				this->cadastrarFuncionario();
+				this->menu();
 				break;
 		}
 	}
@@ -244,7 +243,7 @@ namespace adrd {
 
 				std::cin >> *an;
 
-				an->save();
+				an->save("./data/Animais.csv");
 
 				return true;
 			}else if(classe == "reptil" || classe == "réptil") {
@@ -252,7 +251,7 @@ namespace adrd {
 
 				std::cin >> *an;
 
-				an->save();
+				an->save("./data/Animais.csv");
 
 				return true;
 			}else if(classe == "ave") {
@@ -260,7 +259,7 @@ namespace adrd {
 
 				std::cin >> *an;
 
-				an->save();
+				an->save("./data/Animais.csv");
 
 				return true;
 			}else if(classe == "anfibio" || classe == "anfíbio") {
@@ -268,7 +267,7 @@ namespace adrd {
 
 				std::cin >> *an;
 
-				an->save();
+				an->save("./data/Animais.csv");
 
 				return true;
 			}else {
@@ -284,11 +283,78 @@ namespace adrd {
 		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
 			std::cout << *i->second << std::endl << std::endl;
 		}
+
+		int op = -1;
+
+		while(op < 0 || op > 1) {
+		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
+		    op = getInt(std::cin);
+
+		    if(op == 0) exit(0);
+		}
 	}
 
 	bool
 	mPetFera::cadastrarFuncionario(){
+		std::cout << "# Cadastro de Funcionario" << std::endl << std::endl;
+		std::cout << "# Informe os dados do funcionário" << std::endl << std::endl;
+
+		std::cout << "# Função: ";
+		std::string funcao;	
+		
+		while(funcao != "veterinario" && funcao != "veterinário" && funcao != "tratador") {
+
+			std::getline(std::cin, funcao);
+			std::transform(funcao.begin(), funcao.end(),funcao.begin(), ::tolower);
+
+		    if(funcao == "veterinario" || funcao == "veterinário") {
+				std::shared_ptr<Funcionario> vet(new Veterinario);
+
+				std::cin >> *vet;
+
+				vet->save("./data/Funcionarios.csv");
+
+				return true;
+			}else if(funcao == "reptil" || funcao == "réptil") {
+				std::shared_ptr<Funcionario> trat(new Tratador);
+
+				std::cin >> *trat;
+
+				trat->save("./data/Funcionarios.csv");
+
+				return true;
+			}else {
+				std::cout << "Função desconhecida, insira uma nova entrada: ";
+			}
+		}
+
 		return false;
+	}
+
+	void 
+	mPetFera::listarFunionarios(){
+		for (auto i = mFuncionario.begin(); i != mFuncionario.end(); i++){
+			std::cout << *i->second << std::endl << std::endl;
+		}
+
+		int op = -1;
+
+		while(op < 0 || op > 1) {
+		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
+		    op = getInt(std::cin);
+
+		    if(op == 0) exit(0);
+		}
+	}
+
+	std::map<int, std::shared_ptr<Funcionario>> 
+	mPetFera::getFuncionarios(){
+		return this->mFuncionario;
+	}
+
+	std::map<int, std::shared_ptr<Animal>>
+	mPetFera::getAnimais(){
+		return this->mAnimal;
 	}
 
 } // adrd

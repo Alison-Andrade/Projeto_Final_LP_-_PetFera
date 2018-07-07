@@ -23,13 +23,13 @@ namespace adrd {
 	class NotFRHException{
 	public:
 		NotFRHException(){
-			std::cout << "Era esperado como entrada um único caractere (+ ou -), insira um novo valor: ";
-			
-		}
+			std::cout << "Era esperado como entrada '+' ou '-', insira um novo valor: ";
+		};
 
 		char resolve(std::istream& in){
 			return getFRHInput(in);
 		}
+		
 	};
 
 	class FileNotFound {

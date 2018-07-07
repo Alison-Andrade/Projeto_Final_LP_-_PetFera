@@ -2,6 +2,7 @@
 #define FUNCIONARIO_H
 
 #include <iostream>
+#include <fstream>
 #include "auxiliar.h"
 
 namespace adrd {
@@ -29,29 +30,12 @@ namespace adrd {
 
 		//Getters
 		static int getCounter();
-		// int getID();
-		// std::string getNome();
-		// std::string getCPF();
-		// short getIdade();
-		// short getTipoSanguineo();
-		// char getFatorRH();
-		// std::string getEspecialidade();
-
-		// //Setters
-		// void setID(int id_);
-		// void setNome(std::string nome_);
-		// void setCPF(std::string cpf_);
-		// void setIdade(short idade_);
-		// void setTipoSanguineo(short tipo_sanguineo_);
-		// void setFatorRH(char fatorRH_);
-		// void setEspecialidade(std::string especialidade_);
-
 
 		//Sobrecarga de operadores
 		friend std::ostream& operator<<(std::ostream& out, Funcionario& f);
 		friend std::istream& operator>>(std::istream& in, Funcionario& f);
 
-		// virtual void save(std::ostream& out) const = 0;
+		virtual void save(std::string sf) = 0;
 		// virtual void load(std::istream& in) const = 0;
 	};
 

@@ -38,16 +38,38 @@ namespace adrd {
 		std::cout << "# CPF: ";
 		std::getline(in, this->f_cpf);
 		std::cout << "# Idade: ";
-		in >> this->f_idade;
+		this->f_idade = getInt(in);
 		std::cout << "# Tipo Sanguíneo: ";
 		in >> this->f_tipo_sanguineo;
 		std::cout << "# Fator RH: ";
-		in >> this->f_fatorRH;
+		this->f_fatorRH = getFRHInput(in);
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Especialidade: ";
 		std::getline(in, this->f_especialidade);
 
 		return in;
+	}
+
+	void 
+	Veterinario::save(std::string sf){
+		std::ofstream file;
+
+		file.open(sf, std::ofstream::app);
+
+		file << this->f_id << ";" 
+			<< this->f_nome << ";" 
+			<< this->f_cpf << ";" 
+			<< this->f_idade << ";" 
+			<< this->f_tipo_sanguineo << ";" 
+			<< this->f_idade << ";" 
+			<< this->f_fatorRH << ";" 
+			<< this->f_especialidade << ";"
+			<< this->funcao << std::endl;
+
+		std::cout << "Funcionário cadastrado..." << std::endl << std::endl;
+
+		file.close();
+
 	}
 
 } // adrd

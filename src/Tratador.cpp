@@ -50,14 +50,26 @@ namespace adrd {
 		return in;
 	}
 
-	// void
-	// Tratador::save(std::ostream& out) const{
+	void 
+	Tratador::save(std::string sf){
+		std::ofstream file;
 
-	// }
+		file.open(sf, std::ofstream::app);
 
-	// void 
-	// Tratador::load(std::istream& in) const{
+		file << this->f_id << ";" 
+			<< this->f_nome << ";" 
+			<< this->f_cpf << ";" 
+			<< this->f_idade << ";" 
+			<< this->f_tipo_sanguineo << ";" 
+			<< this->f_idade << ";" 
+			<< this->f_fatorRH << ";" 
+			<< this->f_especialidade << ";"
+			<< this->funcao << std::endl;
 
-	// }
+		std::cout << "Funcionário cadastrado..." << std::endl << std::endl;
+
+		file.close();
+
+	}
 
 } // adrd

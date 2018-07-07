@@ -71,33 +71,28 @@ namespace adrd {
 		in >> sexo;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Tamanho: ";
-		in >> tamanho;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		tamanho = getInt(in);
 		std::cout << "# Dieta: ";
 		std::getline(in, dieta);
 		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
-		in >> veterinario;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		veterinario = getInt(in);
 		std::cout << "# ID do tratador responsavel (0 = sem tratador): ";
-		in >> tratador;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		tratador = getInt(in);
 		std::cout << "# Nome de Batismo: ";
 		std::getline(in, batismo);
 		std::cout << "# Tamanho do bico: ";
-		in >> tamanho_bico;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		tamanho_bico = getInt(in);
 		std::cout << "# Envergadura: ";
-		in >> envergadura;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		envergadura = getInt(in);
 
 		return in;
 	}
 
 	void 
-	Ave::save(){
+	Ave::save(std::string sf){
 		std::ofstream file;
 
-		file.open("./data/Animais.csv", std::ofstream::app);
+		file.open(sf, std::ofstream::app);
 
 		file << this->id << std::endl
 			<< ";" << this->classe

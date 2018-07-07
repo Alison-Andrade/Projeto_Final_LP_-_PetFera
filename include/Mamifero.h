@@ -21,7 +21,7 @@ namespace adrd {
 		std::string getCorPelo();
 		void setCorPelo(std::string cor_pelo_);
 
-		void save();
+		void save(std::string sf);
 	};
 
 } // adrd

@@ -27,7 +27,7 @@ namespace adrd {
 		void setVenenoso(bool venenoso_);
 		void setTipoVeneno(std::string tipo_veneno_);
 
-		void save();
+		void save(std::string sf);
 
 	};
 

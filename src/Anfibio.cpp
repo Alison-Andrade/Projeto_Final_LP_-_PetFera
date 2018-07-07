@@ -71,21 +71,17 @@ namespace adrd {
 		in >> this->sexo;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Tamanho: ";
-		in >> this->tamanho;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		this->tamanho = getInt(in);
 		std::cout << "# Dieta: ";
 		std::getline(in, this->dieta);
 		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
-		in >> this->veterinario;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		this->veterinario = getInt(in);
 		std::cout << "# ID do tratador responsavel (0 = sem tratador): ";
-		in >> this->tratador;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		this->tratador = getInt(in);
 		std::cout << "# Nome de Batismo: ";
 		std::getline(in, this->batismo);
 		std::cout << "# Total de mudas: ";
-		in >> this->total_mudas;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		this->total_mudas = getInt(in);
 		std::cout << "# Data da ultima muda: ";
 		std::getline(in, this->ultima_muda);
 
@@ -93,10 +89,10 @@ namespace adrd {
 	}
 
 	void 
-	Anfibio::save(){
+	Anfibio::save(std::string sf){
 		std::ofstream file;
 
-		file.open("./data/Animais.csv", std::ofstream::app);
+		file.open(sf, std::ofstream::app);
 
 		file << this->id << ";" 
 			<< this->classe << ";" 

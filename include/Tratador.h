@@ -17,7 +17,7 @@ namespace adrd {
 				std::string tipo_sanguineo_, char fatorRH_, std::string especialidade_);
 		~Tratador();
 
-		// void save(std::ostream& out) const;
+		void save(std::string sf);
 		// void load(std::istream& in) const;
 	};
 
