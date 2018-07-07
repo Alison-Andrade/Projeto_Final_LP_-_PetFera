@@ -2,6 +2,8 @@
 #define MY_EXCEPTIONS_H
 
 #include <iostream>
+#include <fstream>
+#include <limits>
 #include "auxiliar.h"
 
 namespace adrd {
@@ -31,11 +33,24 @@ namespace adrd {
 	};
 
 	class FileNotFound {
-	private:
-		
 	public:
-		FileNotFound(){
-			std::cerr << "Erro ao abrir arquivo.";
+		FileNotFound(std::ifstream& file){
+			std::cerr << "Erro ao abrir arquivo." << std::endl;
+			std::cout << "Inserir novo caminho? (s/n): ";
+			char aux;
+			while(aux != 's' && aux != 'n') {
+			    std::cin >> aux;
+			    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
+			if(aux == 's') {
+				std::cout << "Cominho: ";
+				std::string path;
+				std::getline(std::cin, path);
+
+				file.open(path);
+			}else{
+				exit(-1);
+			}
 		}
 	};
 

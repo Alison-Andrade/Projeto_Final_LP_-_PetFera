@@ -66,7 +66,7 @@ namespace adrd {
 	Reptil::read(std::istream& in){
 		std::cout << "# Insira as informações do animal" << std::endl;
 		this->id = Animal::getCounter();
-		this->classe = "Réptil";
+		this->classe = "Reptilia";
 		std::cout << "# Nome: ";
 		std::getline(in, this->nome);
 		std::cout << "# Nome Cientifico: ";
@@ -103,6 +103,29 @@ namespace adrd {
 		}
 
 		return in;
+	}
+
+	void 
+	Reptil::save(){
+		std::ofstream file;
+
+		file.open("./data/Animais.csv", std::ofstream::app);
+
+		file << this->id << std::endl
+			<< ";" << this->classe
+			<< ";" << this->nome
+			<< ";" << this->sexo
+			<< ";" << this->cientifico
+			<< ";" << this->tamanho
+			<< ";" << this->dieta
+			<< ";" << this->veterinario
+			<< ";" << this->tratador
+			<< ";" << this->batismo
+			<< ";" << this->venenoso
+			<< ";" << this->tipo_veneno << std::endl;
+
+		file.close();
+
 	}
 
 } // adrd

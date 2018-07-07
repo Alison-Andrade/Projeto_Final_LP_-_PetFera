@@ -4,6 +4,8 @@
 #include <iostream>
 #include <limits>
 
+#include <myExceptions.h>
+
 namespace adrd {
 
 	class Animal {
@@ -58,6 +60,8 @@ namespace adrd {
 		//Sobrecargas
 		friend std::istream& operator>>(std::istream& in, Animal& a);
 		friend std::ostream& operator<<(std::ostream& out, Animal& a);
+
+		virtual void save() = 0;
 	};
 
 } // adrd

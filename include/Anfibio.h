@@ -26,6 +26,8 @@ namespace adrd {
 		//Setters
 		void setTotalMudas(int total_mudas_);
 		void setUltimaMuda(std::string ultima_muda_);
+
+		void save();
 	};
 
 } // ardr

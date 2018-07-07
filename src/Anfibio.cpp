@@ -62,7 +62,7 @@ namespace adrd {
 	Anfibio::read(std::istream& in){
 		std::cout << "# Insira as informações do animal" << std::endl;
 		this->id = Animal::getCounter();
-		this->classe = "Anfíbio";
+		this->classe = "Amphibia";
 		std::cout << "# Nome: ";
 		std::getline(in, this->nome);
 		std::cout << "# Nome Cientifico: ";
@@ -90,6 +90,31 @@ namespace adrd {
 		std::getline(in, this->ultima_muda);
 
 		return in;
+	}
+
+	void 
+	Anfibio::save(){
+		std::ofstream file;
+
+		file.open("./data/Animais.csv", std::ofstream::app);
+
+		file << this->id << ";" 
+			<< this->classe << ";" 
+			<< this->nome << ";" 
+			<< this->sexo << ";" 
+			<< this->cientifico << ";" 
+			<< this->tamanho << ";" 
+			<< this->dieta << ";" 
+			<< this->veterinario << ";" 
+			<< this->tratador << ";" 
+			<< this->batismo << ";" 
+			<< this->total_mudas << ";" 
+			<< this->ultima_muda << std::endl;
+
+		std::cout << "Animal cadastrado..." << std::endl << std::endl;
+
+		file.close();
+
 	}
 
 

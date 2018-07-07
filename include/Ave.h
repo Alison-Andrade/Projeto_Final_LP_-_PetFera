@@ -26,6 +26,8 @@ namespace adrd {
 		//Setters
 		void setTamanhoBico(int tamanho_bico_);
 		void setEnvergadura(int envergadura_);
+
+		void save();
 	};
 
 } // adrd

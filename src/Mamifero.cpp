@@ -49,7 +49,7 @@ namespace adrd {
 	Mamifero::read(std::istream& in){
 		std::cout << "# Insira as informações do animal" << std::endl;
 		this->id = Animal::getCounter();
-		this->classe = "Mamífero";
+		this->classe = "Mammalia";
 		std::cout << "# Nome: ";
 		std::getline(in, this->nome);
 		std::cout << "# Nome Cientifico: ";
@@ -74,6 +74,28 @@ namespace adrd {
 		std::getline(in, this->cor_pelo);
 
 		return in;
+	}
+
+	void 
+	Mamifero::save(){
+		std::ofstream file;
+
+		file.open("./data/Animais.csv", std::ofstream::app);
+
+		file << this->id << std::endl
+			<< ";" << this->classe
+			<< ";" << this->nome
+			<< ";" << this->sexo
+			<< ";" << this->cientifico
+			<< ";" << this->tamanho
+			<< ";" << this->dieta
+			<< ";" << this->veterinario
+			<< ";" << this->tratador
+			<< ";" << this->batismo
+			<< ";" << this->cor_pelo << std::endl;
+
+		file.close();
+
 	}
 
 } // adrd

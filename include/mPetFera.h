@@ -7,8 +7,10 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <algorithm>
 
 #include "auxiliar.h"
+#include "myExceptions.h"
 #include "Anfibio.h"
 #include "Animal.h"
 #include "Ave.h"
@@ -26,9 +28,15 @@ namespace adrd {
 
 		void loadAnimais();
 		void loadFuncionarios();
+		void menu();
+		bool cadastrarAnimal();
+		void listarAnimais();
+		bool cadastrarFuncionario();
+		
 
 	public:
 		mPetFera();
+		~mPetFera();
 		void run();
 	};
 } // adrd

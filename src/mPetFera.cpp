@@ -6,18 +6,17 @@ namespace adrd {
 		
 	}
 
+	mPetFera::~mPetFera(){
+		mAnimal.clear();
+		mFuncionario.clear();
+	}
+
 	void
 	mPetFera::run(){
 		this->loadAnimais();
 		this->loadFuncionarios();
-
-		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
-			std::cout << *i->second << std::endl;
-		}
-
-		for (auto i = mFuncionario.begin(); i != mFuncionario.end(); i++){
-			std::cout << *i->second << std::endl;
-		}
+		this->menu();
+		
 	}
 
 	void
@@ -54,12 +53,14 @@ namespace adrd {
 		try {
 			file.open("./data/Animais.csv");
 
+			if(!file) throw FileNotFound(file);
+
 			while(std::getline(file, linha)) {
 				linhas.push_back(linha);
 			}
 
 			file.close();
-		}catch(std::exception& e) {
+		}catch(FileNotFound& e) {
 			
 		}
 
@@ -141,12 +142,14 @@ namespace adrd {
 		try {
 			file.open("./data/Funcionarios.csv");
 
+			if(!file) throw FileNotFound(file);
+
 			while(std::getline(file, linha)) {
 				linhas.push_back(linha);
 			}
 
 			file.close();
-		}catch(std::exception& e) {
+		}catch(FileNotFound& e) {
 			
 		}
 
@@ -178,51 +181,114 @@ namespace adrd {
 		}
 	}
 
+	void
+	mPetFera::menu(){
+
+		int op = -1;
+
+		std::cout << "# Bem vindo ao PetFera" << std::endl << std::endl;
+
+		std::cout << "# Selecione a opção desejada inserindo o número correspondente" << std::endl << std::endl;
+
+		std::cout << "(1) Listar animais cadastrados" << std::endl
+					<< "(2) Cadastrar novo animal" << std::endl
+					<< "(3) Listar funcionários" << std::endl
+					<< "(4) Cadastrar novo funcionário" << std::endl
+					<< "(0) Sair" << std::endl << std::endl
+					<< "Opção: ";
+
+		while(op < 0 || op > 4) {
+		    op = getInt(std::cin);
+		}
+
+		switch(op){
+			case 0:
+				exit(0);
+				break;
+			case 1:
+				this->listarAnimais();
+				break;
+			case 2:
+				this->cadastrarAnimal();
+				this->menu();
+				break;
+			case 3:
+				this->cadastrarFuncionario();
+				this->menu();
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+		}
+	}
+
+	bool
+	mPetFera::cadastrarAnimal(){
+		std::cout << "# Cadastro de Animal" << std::endl << std::endl;
+		std::cout << "# Informe os dados do animal" << std::endl << std::endl;
+
+		std::cout << "# Classe: ";
+		std::string classe;	
+		
+		while(classe != "mamifero" && classe != "mamífero" && classe != "reptil" && classe != "réptil" 
+			&& classe != "ave" && classe != "anfibio" && classe != "anfíbio") {
+
+			std::getline(std::cin, classe);
+			std::transform(classe.begin(), classe.end(),classe.begin(), ::tolower);
+
+		    if(classe == "mamifero" || classe == "mamífero") {
+				std::shared_ptr<Animal> an(new Mamifero);
+
+				std::cin >> *an;
+
+				an->save();
+
+				return true;
+			}else if(classe == "reptil" || classe == "réptil") {
+				std::shared_ptr<Animal> an(new Reptil);
+
+				std::cin >> *an;
+
+				an->save();
+
+				return true;
+			}else if(classe == "ave") {
+				std::shared_ptr<Animal> an(new Ave);
+
+				std::cin >> *an;
+
+				an->save();
+
+				return true;
+			}else if(classe == "anfibio" || classe == "anfíbio") {
+				std::shared_ptr<Animal> an(new Anfibio);
+
+				std::cin >> *an;
+
+				an->save();
+
+				return true;
+			}else {
+				std::cout << "Classe desconhecida, insira uma nova entrada: ";
+			}
+		}
+
+		return false;
+	}
+
+	void 
+	mPetFera::listarAnimais(){
+		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
+			std::cout << *i->second << std::endl << std::endl;
+		}
+	}
+
+	bool
+	mPetFera::cadastrarFuncionario(){
+		return false;
+	}
+
 } // adrd
-
-// void run(){
-
-
-
-// }
-
-// void menu(){
-
-// 	int op = -1;
-
-// 	std::cout << "# Bem vindo ao PetFera" << std::endl << std::endl;
-
-// 	std::cout << "# Selecione a opção desejada inserindo o número correspondente" << std::endl << std::endl;
-
-// 	std::cout << "(1) Listar animais cadastrados" << std::endl
-// 				<< "(2) Cadastrar novo animal" << std::endl
-// 				<< "(3) Buscar animal específico" << std::endl
-// 				<< "(4) Listar funcionários" << std::endl
-// 				<< "(5) Cadastrar novo funcionário" << std::endl
-// 				<< "(6) Buscar funcionário específico" << std::endl
-// 				<< "(0) Sair" << std::endl << std::endl
-// 				<< "Opção: ";
-
-// 	while(op < 0 || op > 6) {
-// 	    op = getInt(std::cin);
-// 	}
-
-// 	switch(op){
-// 		case 0:
-// 			exit(0);
-// 			break;
-// 		case 1:
-// 			break;
-// 		case 2:
-// 			break;
-// 		case 3:
-// 			break;
-// 		case 4:
-// 			break;
-// 		case 5:
-// 			break;
-// 		case 6:
-// 			break;
-// 	}
-
-// }

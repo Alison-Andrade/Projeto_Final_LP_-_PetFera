@@ -93,4 +93,27 @@ namespace adrd {
 		return in;
 	}
 
+	void 
+	Ave::save(){
+		std::ofstream file;
+
+		file.open("./data/Animais.csv", std::ofstream::app);
+
+		file << this->id << std::endl
+			<< ";" << this->classe
+			<< ";" << this->nome
+			<< ";" << this->sexo
+			<< ";" << this->cientifico
+			<< ";" << this->tamanho
+			<< ";" << this->dieta
+			<< ";" << this->veterinario
+			<< ";" << this->tratador
+			<< ";" << this->batismo
+			<< ";" << this->tamanho_bico
+			<< ";" << this->envergadura << std::endl;
+
+		file.close();
+
+	}
+
 } // adrd
