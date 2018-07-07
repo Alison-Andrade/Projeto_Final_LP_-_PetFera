@@ -10,13 +10,13 @@ namespace adrd {
 		int tamanho_bico;
 		int envergadura;
 
-		std::istream& read(istream& in);
-		std::ostream& print(ostream& out);
+		std::istream& read(std::istream& in);
+		std::ostream& print(std::ostream& out);
 	public:
 		Ave();
 		Ave(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_, int tamanho_bico_, int envergadura_);
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_, int tamanho_bico_, int envergadura_);
 		~Ave();
 
 		//Getters

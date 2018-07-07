@@ -66,28 +66,28 @@ namespace adrd {
 		std::cout << "# Nome: ";
 		std::getline(in, this->nome);
 		std::cout << "# Nome Cientifico: ";
-		std::getline(in, cientifico);
+		std::getline(in, this->cientifico);
 		std::cout << "# Sexo: ";
-		in >> sexo;
+		in >> this->sexo;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Tamanho: ";
-		in >> tamanho;
+		in >> this->tamanho;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Dieta: ";
-		std::getline(in, dieta);
+		std::getline(in, this->dieta);
 		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
-		in >> veterinario;
+		in >> this->veterinario;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# ID do tratador responsavel (0 = sem tratador): ";
-		in >> tratador;
+		in >> this->tratador;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Nome de Batismo: ";
-		std::getline(in, batismo);
+		std::getline(in, this->batismo);
 		std::cout << "# Total de mudas: ";
-		in >> total_mudas;
+		in >> this->total_mudas;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Data da ultima muda: ";
-		std::getline(in, ultima_muda);
+		std::getline(in, this->ultima_muda);
 
 		return in;
 	}

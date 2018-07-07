@@ -6,9 +6,9 @@ namespace adrd {
 	{}
 
 	Ave::Ave(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_, int tamanho_bico_, int envergadura_):
-	Animal(id_, classe_, nome_, cientifico_, sexo_, tamanho_, dieta_, veterinario_, tratador_),
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_, int tamanho_bico_, int envergadura_):
+	Animal(id_, classe_, nome_, cientifico_, sexo_, tamanho_, dieta_, veterinario_, tratador_, batismo_),
 	tamanho_bico(tamanho_bico_), envergadura(envergadura_)
 	{}
 
@@ -16,21 +16,81 @@ namespace adrd {
 	{}
 
 	//Getters
-	int getTamanhoBico(){
+	int 
+	Ave::getTamanhoBico(){
 		return this->tamanho_bico;
 	}
 	
-	int getEnvergadura(){
+	int 
+	Ave::getEnvergadura(){
 		return this->envergadura;
 	}
 	
 	//Setters
-	void setTamanhoBico(int tamanho_bico_){
+	void 
+	Ave::setTamanhoBico(int tamanho_bico_){
 		this->tamanho_bico = tamanho_bico_;
 	}
 	
-	void setEnvergadura(int envergadura_){
+	void 
+	Ave::setEnvergadura(int envergadura_){
 		this->envergadura = envergadura_;
+	}
+
+	std::ostream&
+	Ave::print(std::ostream& out){
+		out << "#  >>> Ficha do Animal <<<" << std::endl
+			<< "# ID: " << this->id << std::endl
+			<< "# Classe: " << this->classe << std::endl
+			<< "# Nome: " << this->nome << std::endl
+			<< "# Sexo: " << this->sexo << std::endl
+			<< "# Nome Cientifico: " << this->cientifico << std::endl
+			<< "# Tamanho: " << this->tamanho << std::endl
+			<< "# Dieta: " << this->dieta << std::endl
+			<< "# ID do Veterinario: ";
+			this->veterinario == 0 ? out << "Sem veterinario responsavel" << std::endl : out << this->veterinario << std::endl;
+		out << "# ID do Tratador: ";
+			this->tratador == 0 ? out << "Sem tratador responsavel" << std::endl : out << this->tratador << std::endl;
+		out << "# Nome de Batismo: " << this->batismo << std::endl
+			<< "# Tamanho do bico: " << this->tamanho_bico << std::endl
+			<< "# Envergadura: " << this->envergadura << std::endl;
+
+		return out;
+	}
+
+	std::istream&
+	Ave::read(std::istream& in){
+		std::cout << "# Insira as informações do animal" << std::endl;
+		this->id = Animal::getCounter();
+		this->classe = "Ave";
+		std::cout << "# Nome: ";
+		std::getline(in, this->nome);
+		std::cout << "# Nome Cientifico: ";
+		std::getline(in, cientifico);
+		std::cout << "# Sexo: ";
+		in >> sexo;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Tamanho: ";
+		in >> tamanho;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Dieta: ";
+		std::getline(in, dieta);
+		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
+		in >> veterinario;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# ID do tratador responsavel (0 = sem tratador): ";
+		in >> tratador;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Nome de Batismo: ";
+		std::getline(in, batismo);
+		std::cout << "# Tamanho do bico: ";
+		in >> tamanho_bico;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Envergadura: ";
+		in >> envergadura;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		return in;
 	}
 
 } // adrd

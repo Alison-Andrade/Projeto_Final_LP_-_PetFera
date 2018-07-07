@@ -5,17 +5,17 @@
 
 namespace adrd {
 
-	class Mamifero {
+	class Mamifero : public Animal{
 	protected:
 		std::string cor_pelo;
 
-		std::istream& read(istream& in);
-		std::ostream& print(ostream& out);
+		std::istream& read(std::istream& in);
+		std::ostream& print(std::ostream& out);
 	public:
 		Mamifero();
 		Mamifero(int id_, std::string classe_, std::string nome_, std::string cientifico_,
-				char sexo_, float tamanho_, std::string dieta_, Veterinario veterinario_, 
-				Tratador tratador_, std::string batismo_, std::string cor_pelo_);
+				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
+				int tratador_, std::string batismo_, std::string cor_pelo_);
 		~Mamifero();
 
 		std::string getCorPelo();

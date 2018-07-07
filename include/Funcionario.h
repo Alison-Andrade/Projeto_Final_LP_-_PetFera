@@ -2,6 +2,7 @@
 #define FUNCIONARIO_H
 
 #include <iostream>
+#include "auxiliar.h"
 
 namespace adrd {
 
