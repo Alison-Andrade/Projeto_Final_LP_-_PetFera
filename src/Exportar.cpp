@@ -3,7 +3,11 @@
 #include "mPetFera.h"
 
 void showHelp(){
-
+	std::cout << "Help:" << std::endl
+				<< "	-c : Recebe classe de animal" << std::endl
+				<< "	-v : Recebe id do veterinario" << std::endl
+				<< "	-c : Recebe id do tratador" << std::endl
+				<< "	Obrigatoriamente deve-se passar o nome de um arquivo de saida" << std::endl;
 }
 
 int main(int argc, char const *argv[]){
