@@ -9,8 +9,13 @@ namespace adrd {
 	void
 	mPetFera::run(){
 		this->loadAnimais();
+		this->loadFuncionarios();
 
 		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
+			std::cout << *i->second << std::endl;
+		}
+
+		for (auto i = mFuncionario.begin(); i != mFuncionario.end(); i++){
 			std::cout << *i->second << std::endl;
 		}
 	}
@@ -18,17 +23,6 @@ namespace adrd {
 	void
 	mPetFera::loadAnimais(){
 		std::ifstream file;
-		// file.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
-
-		// try {
-		// 	file.open("data/Animais.csv");
-		// }
-		// catch(std::ifstream::failure e) {
-		// 	std::cerr << "Erro de arquivo" << std::endl;
-		// 	exit(-1);
-		// }
-
-		file.open("./data/Animais.csv");
 
 		std::string id;
 		std::string classe;
@@ -57,8 +51,16 @@ namespace adrd {
 
 		std::vector<std::string> linhas;
 
-		while(std::getline(file, linha)) {
-			linhas.push_back(linha);
+		try {
+			file.open("./data/Animais.csv");
+
+			while(std::getline(file, linha)) {
+				linhas.push_back(linha);
+			}
+
+			file.close();
+		}catch(std::exception& e) {
+			
 		}
 
 		for (auto i = linhas.begin(); i < linhas.end(); i++){
@@ -91,7 +93,7 @@ namespace adrd {
 				std::getline(ss, tipo_veneno, ';');
 				bool aux;
 
-				venenoso = "true" ? aux = true : aux = false;
+				venenoso = "true" ? (aux = true) : (aux = false);
 
 				std::shared_ptr<Animal> an(new Reptil(std::stoi(id), classe, nome, cientifico, 
 												sexo[0], std::stof(tamanho), dieta, std::stoi(veterinario),
@@ -115,6 +117,63 @@ namespace adrd {
 												std::stoi(tratador), batismo, cor_pelo));
 
 				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), an));
+			}
+		}
+	}
+
+	void
+	mPetFera::loadFuncionarios(){
+		std::ifstream file;
+
+		std::string id;
+		std::string nome;
+		std::string cpf;
+		std::string idade;
+		std::string tipo_sanguineo;
+		std::string fatorRH;
+		std::string especialidade;
+		std::string funcao;
+		
+		std::string linha;
+
+		std::vector<std::string> linhas;
+
+		try {
+			file.open("./data/Funcionarios.csv");
+
+			while(std::getline(file, linha)) {
+				linhas.push_back(linha);
+			}
+
+			file.close();
+		}catch(std::exception& e) {
+			
+		}
+
+		for (auto i = linhas.begin(); i < linhas.end(); i++){
+
+			std::stringstream ss(*i);
+
+			std::getline(ss, id, ';');
+			std::getline(ss, nome, ';');
+			std::getline(ss, cpf, ';');
+			std::getline(ss, idade, ';');
+			std::getline(ss, tipo_sanguineo, ';');
+			std::getline(ss, fatorRH, ';');
+			std::getline(ss, especialidade, ';');
+			std::getline(ss, funcao);
+
+
+			if(funcao == "Tratador") {
+				std::shared_ptr<Funcionario> f(new Tratador(std::stoi(id), nome, cpf, std::stoi(idade), 
+												tipo_sanguineo, fatorRH[0], especialidade));
+
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id), f));
+			}else if(funcao == "Veterinário") {
+				std::shared_ptr<Funcionario> f(new Veterinario(std::stoi(id), nome, cpf, std::stoi(idade), 
+												tipo_sanguineo, fatorRH[0], especialidade));
+
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id), f));
 			}
 		}
 	}

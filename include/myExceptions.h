@@ -30,6 +30,15 @@ namespace adrd {
 		}
 	};
 
+	class FileNotFound {
+	private:
+		
+	public:
+		FileNotFound(){
+			std::cerr << "Erro ao abrir arquivo.";
+		}
+	};
+
 } // adrd
 
 #endif // MY_EXCEPTIONS_H

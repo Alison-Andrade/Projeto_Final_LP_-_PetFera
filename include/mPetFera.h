@@ -25,6 +25,7 @@ namespace adrd {
 		std::map<int, std::shared_ptr<Funcionario>> mFuncionario;
 
 		void loadAnimais();
+		void loadFuncionarios();
 
 	public:
 		mPetFera();
