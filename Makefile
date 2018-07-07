@@ -49,7 +49,7 @@ PetFera: main.o libPetFera.so
 debug: CPP_FLAGS += -g -O0
 debug: PetFera exportar
 
-.PHONY: 
+.PHONY: main.o exportar.o libPetFera.so
 
 dir:
 	@mkdir bin build doc lib
