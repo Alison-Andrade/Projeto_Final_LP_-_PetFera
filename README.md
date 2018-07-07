@@ -1,5 +1,10 @@
 # Projeto_Final_LP_-_PetFera
 
-*Compilação
+Compilação
+	
 	make
 
+Utilização
+
+	./bin/PetFera
+	./bin/exportar
