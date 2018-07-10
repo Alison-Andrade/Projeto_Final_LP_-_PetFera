@@ -1,3 +1,11 @@
+/**
+* @file		myExceptions.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef MY_EXCEPTIONS_H
 #define MY_EXCEPTIONS_H
 

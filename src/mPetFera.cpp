@@ -84,11 +84,10 @@ namespace adrd {
 				std::getline(ss, total_mudas, ';');
 				std::getline(ss, ultima_muda);
 
-				std::shared_ptr<Animal> an(new Anfibio(std::stoi(id), classe, nome, cientifico, 
+				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), 
+					std::make_shared<Anfibio>(Anfibio(std::stoi(id), classe, nome, cientifico, 
 												sexo[0], std::stof(tamanho), dieta, std::stoi(veterinario),
-												std::stoi(tratador), batismo, std::stoi(total_mudas), ultima_muda));
-
-				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), an));
+												std::stoi(tratador), batismo, std::stoi(total_mudas), ultima_muda))));
 			}else if(classe == "Reptilia") {
 				std::getline(ss, venenoso, ';');
 				std::getline(ss, tipo_veneno, ';');
@@ -96,28 +95,25 @@ namespace adrd {
 
 				venenoso = "true" ? (aux = true) : (aux = false);
 
-				std::shared_ptr<Animal> an(new Reptil(std::stoi(id), classe, nome, cientifico, 
+				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), 
+					std::make_shared<Reptil>(Reptil(std::stoi(id), classe, nome, cientifico, 
 												sexo[0], std::stof(tamanho), dieta, std::stoi(veterinario),
-												std::stoi(tratador), batismo, aux, tipo_veneno));
-
-				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), an));
+												std::stoi(tratador), batismo, aux, tipo_veneno))));
 			}else if(classe == "Ave") {
 				std::getline(ss, tamanho_bico, ';');
 				std::getline(ss, envergadura);
 
-				std::shared_ptr<Animal> an(new Ave(std::stoi(id), classe, nome, cientifico, 
+				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), 
+					std::make_shared<Ave>(Ave(std::stoi(id), classe, nome, cientifico, 
 												sexo[0], std::stof(tamanho), dieta, std::stoi(veterinario),
-												std::stoi(tratador), batismo, stoi(tamanho_bico), stoi(envergadura)));
-
-				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), an));
+												std::stoi(tratador), batismo, stoi(tamanho_bico), stoi(envergadura)))));
 			}else if(classe == "Mammalia") {
 				std::getline(ss, cor_pelo);
 
-				std::shared_ptr<Animal> an(new Mamifero(std::stoi(id), classe, nome, cientifico, 
+				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), 
+					std::make_shared<Mamifero>(Mamifero(std::stoi(id), classe, nome, cientifico, 
 												sexo[0], std::stof(tamanho), dieta, std::stoi(veterinario),
-												std::stoi(tratador), batismo, cor_pelo));
-
-				mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(stoi(id), an));
+												std::stoi(tratador), batismo, cor_pelo))));
 			}
 		}
 	}
@@ -168,15 +164,15 @@ namespace adrd {
 
 
 			if(funcao == "Tratador") {
-				std::shared_ptr<Funcionario> f(new Tratador(std::stoi(id), nome, cpf, std::stoi(idade), 
-												tipo_sanguineo, fatorRH[0], especialidade));
 
-				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id), f));
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id), 
+					std::make_shared<Tratador>(Tratador(std::stoi(id), nome, cpf, std::stoi(idade), 
+												tipo_sanguineo, fatorRH[0], especialidade))));
 			}else if(funcao == "Veterinário") {
-				std::shared_ptr<Funcionario> f(new Veterinario(std::stoi(id), nome, cpf, std::stoi(idade), 
-												tipo_sanguineo, fatorRH[0], especialidade));
 
-				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id), f));
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(stoi(id),
+					std::make_shared<Veterinario>(Veterinario(std::stoi(id), nome, cpf, std::stoi(idade), 
+												tipo_sanguineo, fatorRH[0], especialidade))));
 			}
 		}
 	}

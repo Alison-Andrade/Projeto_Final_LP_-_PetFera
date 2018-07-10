@@ -1,3 +1,11 @@
+/**
+* @file		Tratador.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef TRATADOR_H
 #define TRATADOR_H
 

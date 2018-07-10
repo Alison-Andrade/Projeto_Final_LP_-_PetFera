@@ -1,3 +1,11 @@
+/**
+* @file		Animal.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef ANIMAL_H
 #define ANIMAL_H
 

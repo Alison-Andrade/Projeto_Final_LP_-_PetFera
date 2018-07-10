@@ -1,3 +1,12 @@
+/**
+* @file		mPetFera.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
+
 #ifndef M_PET_FERA_H
 #define M_PET_FERA_H
 
@@ -43,6 +52,8 @@ namespace adrd {
 
 		std::map<int, std::shared_ptr<Animal>>& getAnimais();
 		std::map<int, std::shared_ptr<Funcionario>>& getFuncionarios();
+
+		friend std::ostream& operator<<(std::ostream& out, mPetFera& main);
 		
 	};
 } // adrd

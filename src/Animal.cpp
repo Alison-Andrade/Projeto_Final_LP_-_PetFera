@@ -128,11 +128,49 @@ namespace adrd {
 
 	//Sobrecargas
 	std::istream& operator>>(std::istream& in, Animal& a){
+
+		std::cout << "# Insira as informações do animal" << std::endl;
+		a.id = Animal::getCounter();
+		a.classe = "Amphibia";
+		std::cout << "# Nome: ";
+		std::getline(in, a.nome);
+		std::cout << "# Nome Cientifico: ";
+		std::getline(in, a.cientifico);
+		std::cout << "# Sexo: ";
+		in >> a.sexo;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "# Tamanho: ";
+		a.tamanho = getInt(in);
+		std::cout << "# Dieta: ";
+		std::getline(in, a.dieta);
+		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
+		a.veterinario = getInt(in);
+		std::cout << "# ID do tratador responsavel (0 = sem tratador): ";
+		a.tratador = getInt(in);
+		std::cout << "# Nome de Batismo: ";
+		std::getline(in, a.batismo);
+		
+
 		return a.read(in);
 	}
 	
 
 	std::ostream& operator<<(std::ostream& out, Animal& a){
+
+		out << "#  >>> Ficha do Animal <<<" << std::endl
+			<< "# ID: " << a.id << std::endl
+			<< "# Classe: " << a.classe << std::endl
+			<< "# Nome: " << a.nome << std::endl
+			<< "# Sexo: " << a.sexo << std::endl
+			<< "# Nome Cientifico: " << a.cientifico << std::endl
+			<< "# Tamanho: " << a.tamanho << std::endl
+			<< "# Dieta: " << a.dieta << std::endl
+			<< "# ID do Veterinario: ";
+			a.veterinario == 0 ? out << "Sem veterinario responsavel" << std::endl : out << a.veterinario << std::endl;
+		out << "# ID do Tratador: ";
+			a.tratador == 0 ? out << "Sem tratador responsavel" << std::endl : out << a.tratador << std::endl;
+		out << "# Nome de Batismo: " << a.batismo << std::endl;
+
 		return a.print(out);
 	}
 

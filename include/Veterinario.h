@@ -1,3 +1,11 @@
+/**
+* @file		Veterinario.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef VETERINARIO_H
 #define VETERINARIO_H
 

@@ -1,3 +1,11 @@
+/**
+* @file		Auxiliar.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef AUXILIAR_H
 #define AUXILIAR_H
 

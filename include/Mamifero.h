@@ -1,3 +1,11 @@
+/**
+* @file		Mamifero.h
+* @brief	
+* @details	
+*
+* @author	Alison Sidnei Ferreira de Andrade
+*/
+
 #ifndef MAMIFERO_H
 #define MAMIFERO_H
 

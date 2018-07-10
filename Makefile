@@ -38,13 +38,13 @@ exportar.o:  $(SRC_DIR)/Exportar.cpp $(INC_DIR)/*
 	@$(CC) $(CPP_FLAGS) -c $< -o $(OBJ_DIR)/$@
 
 exportar: exportar.o libPetFera.so
-	$(CC) $(CPP_FLAGS) -L../lib/ -Wl,-rpath=/home/alison/Área\ de\ Trabalho/Projeto_Final_LP_-_PetFera/lib/ -o $(BIN_DIR)/$@ $(OBJ_DIR)/exportar.o $(LIB_DIR)/libPetFera.so
+	$(CC) $(CPP_FLAGS) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) -o $(BIN_DIR)/$@ $(OBJ_DIR)/exportar.o $(LIB_DIR)/libPetFera.so
 
 main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/*
 	@$(CC) $(CPP_FLAGS) -c $< -o $(OBJ_DIR)/$@
 
 PetFera: main.o libPetFera.so
-	$(CC) $(CPP_FLAGS) -L../lib/ -Wl,-rpath=/home/alison/Área\ de\ Trabalho/Projeto_Final_LP_-_PetFera/lib/ -o $(BIN_DIR)/$@ $(OBJ_DIR)/main.o $(LIB_DIR)/libPetFera.so
+	$(CC) $(CPP_FLAGS) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) -o $(BIN_DIR)/$@ $(OBJ_DIR)/main.o $(LIB_DIR)/libPetFera.so
 
 debug: CPP_FLAGS += -g -O0
 debug: PetFera exportar
@@ -56,5 +56,5 @@ dir:
 	@echo "Diretórios criados."
 
 clean:
-	@rm bin/* build/* doc/* lib/*
+	@rm -r bin/* build/* doc/* lib/*
 	@echo "Arquivos de compilação deletados."
