@@ -14,6 +14,9 @@
 
 #include "myExceptions.h"
 #include "auxiliar.h"
+#include "Funcionario.h"
+#include "Tratador.h"
+#include "Veterinario.h"
 
 namespace adrd {
 
@@ -35,7 +38,17 @@ namespace adrd {
 		virtual std::istream& read(std::istream& in) = 0;
 		virtual std::ostream& print(std::ostream& out) = 0;
 	public:
+		
+		/**
+		 * @brief      Construtor padrão da classe Animal
+		 */
 		Animal();
+
+		/**
+		 * @brief Construtor parametrizado da classe Animal
+		 * @details Recebe todos os atributos como parametro para gerar os dados do novo animal
+		 * 
+		 */
 		Animal(int id_, std::string classe_, std::string nome_, std::string cientifico_,
 				char sexo_, float tamanho_, std::string dieta_, int veterinario_, 
 				int tratador_, std::string batismo_);

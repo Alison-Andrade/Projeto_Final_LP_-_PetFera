@@ -18,8 +18,8 @@ namespace adrd {
 		int tamanho_bico;
 		int envergadura;
 
-		std::istream& read(std::istream& in);
-		std::ostream& print(std::ostream& out);
+		virtual std::istream& read(std::istream& in);
+		virtual std::ostream& print(std::ostream& out);
 	public:
 		Ave();
 		Ave(int id_, std::string classe_, std::string nome_, std::string cientifico_,
@@ -35,7 +35,7 @@ namespace adrd {
 		void setTamanhoBico(int tamanho_bico_);
 		void setEnvergadura(int envergadura_);
 
-		void save(std::string sf);
+		virtual void save(std::string sf);
 	};
 
 } // adrd

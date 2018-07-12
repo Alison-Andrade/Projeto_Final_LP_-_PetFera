@@ -19,6 +19,8 @@ namespace adrd {
 	public:
 		Exportar();
 
+		void operator()(std::string classe, std::string tratador, std::string veterinario);
+
 		friend std::ostream& operator<<(std::ostream& out, Exportar& exp);
 	};
 

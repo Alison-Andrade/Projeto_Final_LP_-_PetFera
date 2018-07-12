@@ -26,8 +26,16 @@ namespace adrd {
 		 * @brief Construtor da classe AnimalSilvestre
 		 * @details 
 		 */
-		AnimalSilvestre();
+		AnimalSilvestre(){
+
+		};
+		virtual ~AnimalSilvestre() = 0;
+
+		// void setIbama(std::string ibama_);
+		// std::string getIbama();
 	};
+
+	inline AnimalSilvestre::~AnimalSilvestre(){}
 
 } // adrd
 

@@ -21,34 +21,45 @@
 #include "auxiliar.h"
 #include "myExceptions.h"
 #include "Anfibio.h"
+#include "AnfibioNativo.h"
+#include "AnfibioExotico.h"
 #include "Animal.h"
 #include "Ave.h"
+#include "AveNativa.h"
+#include "AveExotica.h"
 #include "Funcionario.h"
 #include "Mamifero.h"
+#include "MamiferoNativo.h"
+#include "MamiferoExotico.h"
 #include "Reptil.h"
+#include "ReptilNativo.h"
+#include "ReptilExotico.h"
 #include "Tratador.h"
 #include "Veterinario.h"
 
 namespace adrd {
 	class mPetFera {
 	private:
-		std::map<int, std::shared_ptr<Animal>> mAnimal;
-		std::map<int, std::shared_ptr<Funcionario>> mFuncionario;
-
 		void menu();
 		bool cadastrarAnimal();
+		//void removerAnimal();
 		void listarAnimais();
 		bool cadastrarFuncionario();
+		//void removerFuncionario();
 		void listarFunionarios();
+
+	protected:
+		std::map<int, std::shared_ptr<Animal>> mAnimal;
+		std::map<int, std::shared_ptr<Funcionario>> mFuncionario;
+		
+		void loadAnimais();
+		void loadFuncionarios();
 		
 
 	public:
 		mPetFera();
 		~mPetFera();
 		void run();
-
-		void loadAnimais();
-		void loadFuncionarios();
 
 		std::map<int, std::shared_ptr<Animal>>& getAnimais();
 		std::map<int, std::shared_ptr<Funcionario>>& getFuncionarios();

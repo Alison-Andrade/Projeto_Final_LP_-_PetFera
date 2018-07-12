@@ -55,6 +55,10 @@ namespace adrd {
 		virtual ~Funcionario();
 
 		//Getters
+		/**
+		 * @brief Método estático de acesso ao contador da classe
+		 * @return counterID
+		 */
 		static int getCounter();
 
 		//Sobrecarga de operadores

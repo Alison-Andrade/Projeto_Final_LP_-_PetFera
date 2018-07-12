@@ -1,101 +1,54 @@
-#include <iostream>
-#include <fstream>
-#include "mPetFera.h"
+#include "Exportar.h"
 
-void showHelp(){
-	std::cout << "Help:" << std::endl
-				<< "	-c : Recebe classe de animal" << std::endl
-				<< "	-v : Recebe id do veterinario" << std::endl
-				<< "	-c : Recebe id do tratador" << std::endl
-				<< "	Obrigatoriamente deve-se passar o nome de um arquivo de saida" << std::endl;
-}
+namespace adrd {
 
-int main(int argc, char const *argv[]){
+	Exportar::Exportar()
+	{}
 
-	if(argc < 3) {
-		showHelp();
-		exit(-1);
-	}
-	
-	int cFlag(0), vFlag(0), tFlag(0);
+	void
+	Exportar::operator()(std::string classe, std::string tratador, std::string veterinario){
+	// 	int c(0), v(0), t(0);
+	// 	if (classe != "") c = 1;
+	// 	if (tratador != "") t = 1;
+	// 	if (veterinario != "") v = 1;
 
-	std::string classe;
-	std::string tratador;
-	std::string veterinario;
-	std::string arquivo;
-
-	for (auto i = 0; i < argc; i++){
-		std::string aux = argv[i];
-		if(aux == "-h") {
-			showHelp();
-			exit(-1);
-		}else if(aux == "-c") {
-			cFlag = 1;
-			if(i+1 < argc) {
-				classe = argv[++i];
-			}else{
-				std::cout << "-c espera uma classe de animal como entrada.";
-				exit(-1);
-			}
-		}else if(aux == "-v") {
-			cFlag = 1;
-			if(i+1 < argc) {
-				veterinario = argv[++i];
-			}else{
-				std::cout << "-v espera id do veterinário como entrada.";
-				exit(-1);
-			}
-		}else if(aux == "-t") {
-			cFlag = 1;
-			if(i+1 < argc) {
-				tratador = argv[++i];
-			}else{
-				std::cout << "-t espera id do tratador como entrada.";
-				exit(-1);
-			}
-		}
+	// 	if(c == 1 && t == 0 && v == 0) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getClasse() == classe) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}else if(c == 0 && t == 1 && v == 0) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getTratador() == tratador) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}else if(c == 0 && t == 0 && v == 1) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getVeterinario() == veterinario) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}else if(c == 1 && t == 1 && v == 0) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getClasse() == classe) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}else if(c == 1 && t == 0 && v == 1) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getClasse() == classe) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}else if(c == 1 && t == 1 && v == 1) {
+	// 		for(auto i : this->mAnimal) {
+	// 			if(*i->second->getClasse() == classe) {
+	// 				expotMap.insert(i);
+	// 			}
+	// 		}
+	// 	}
 	}
 
-	arquivo = argv[argc-1];
-
-	adrd::mPetFera petFera;
-
-	petFera.loadAnimais();
-
-	if(cFlag == 1) {
-		if(classe == "Mammalia" || classe == "Ave" || classe == "Reptilia" || classe == "Amphibia") {
-			for (auto i = petFera.getAnimais().begin(); i != petFera.getAnimais().end(); i++){
-				if((*i->second).getClasse() == classe) {
-					(*i->second).save(arquivo);
-				}
-			}
-		}else{
-			std::cout << "Classe não reconhecida" << std::endl;
-			exit(-1);
-		}
-	}
-
-	if(vFlag == 1) {
-		for (auto i = petFera.getAnimais().begin(); i != petFera.getAnimais().end(); i++){
-			if((*i->second).getVeterinario() == std::stoi(veterinario)) {
-				(*i->second).save(arquivo);
-			}else{
-				std::cout << "Funcionário não encontrado" << std::endl;
-			}
-		}
-	}
-
-	if(tFlag == 1) {
-		for (auto i = petFera.getAnimais().begin(); i != petFera.getAnimais().end(); i++){
-			if((*i->second).getTratador() == std::stoi(tratador)) {
-				(*i->second).save(arquivo);
-			}else{
-				std::cout << "Funcionário não encontrado" << std::endl;
-			}
-		}
-	}
-
-
-
-	return 0;
-}
+} // adrd

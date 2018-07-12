@@ -129,9 +129,7 @@ namespace adrd {
 	//Sobrecargas
 	std::istream& operator>>(std::istream& in, Animal& a){
 
-		std::cout << "# Insira as informações do animal" << std::endl;
-		a.id = Animal::getCounter();
-		a.classe = "Amphibia";
+		a.id = a.getCounter();
 		std::cout << "# Nome: ";
 		std::getline(in, a.nome);
 		std::cout << "# Nome Cientifico: ";
