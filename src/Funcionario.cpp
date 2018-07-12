@@ -32,4 +32,9 @@ namespace adrd {
 		return counterID;
 	}
 
+	int
+	Funcionario::getID(){
+		return this->f_id;
+	}
+
 } // adrd

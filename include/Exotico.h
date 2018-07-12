@@ -17,15 +17,15 @@ namespace adrd {
 	protected:
 		std::string pais_origem;
 	public:
-		Exotico(){};
+		Exotico();
 		virtual ~Exotico() = 0;
 
-		// std::string getPais();
-		// void setPais();
+		std::string getPais();
+		void setPais(std::string pais_);
 	};
 
-
-	inline Exotico::~Exotico(){}
+	inline Exotico::~Exotico()
+	{}
 
 } // adrd
 

@@ -7,6 +7,10 @@ namespace adrd {
 	}
 
 	mPetFera::~mPetFera(){
+		std::cout << "Salvando dados em arquivo..." << std::endl;
+		this->printAnimais();
+		std::cout << "Encerrando." << std::endl;
+
 		mAnimal.clear();
 		mFuncionario.clear();
 	}
@@ -43,30 +47,23 @@ namespace adrd {
 
 		switch(op){
 			case 0:
-				exit(0);
 				break;
 			case 1:
 				this->listarAnimais();
-				this->menu();
 				break;
 			case 2:
 				this->cadastrarAnimal();
 				this->menu();
 				break;
 			case 3:
-				//this->removerAnimal();
+				this->removerAnimal();
 				this->menu();
 				break;
 			case 4:
 				this->listarFunionarios();
-				this->menu();
 				break;
 			case 5:
 				this->cadastrarFuncionario();
-				this->menu();
-				break;
-			case 6:
-				//this->removerFuncionario();
 				this->menu();
 				break;
 		}
@@ -74,107 +71,288 @@ namespace adrd {
 
 	void
 	mPetFera::loadAnimais(){
-		// std::ifstream file;
+		std::ifstream file;
 
-		// std::string id;
-		// std::string classe;
-		// std::string nome;
-		// std::string cientifico;
-		// std::string sexo;
-		// std::string tamanho;
-		// std::string dieta;
-		// std::string vet_id;
-		// std::string trat_id;
-		// std::string batismo;
+		std::string id;
+		std::string classe;
+		std::string nome;
+		std::string cientifico;
+		std::string sexo;
+		std::string tamanho;
+		std::string dieta;
+		std::string vet_id;
+		std::string trat_id;
+		std::string batismo;
 
-		// Veterinario *vet;
-		// Tratador *trat;
+		//Anfibio
+		std::string total_mudas;
+		std::string ultima_muda;
+		//Ave
+		std::string tamanho_bico;
+		std::string envergadura;
+		//Mamifero
+		std::string cor_pelo;
+		//Réptil
+		std::string venenoso;
+		std::string tipo_veneno;
 
-		// //Anfibio
-		// std::string total_mudas;
-		// std::string ultima_muda;
-		// //Ave
-		// std::string tamanho_bico;
-		// std::string envergadura;
-		// //Mamifero
-		// std::string cor_pelo;
-		// //Réptil
-		// std::string venenoso;
-		// std::string tipo_veneno;
+		std::string idSilvestre;
+		std::string uf;
+		std::string autorizacao;
+		std::string pais;
+		std::string ibama;
 
-		// std::string idSilvestre;
-		// std::string uf;
-		// std::string autorizacao;
-		// std::string pais;
+		std::string linha;
 
-		// std::string linha;
+		std::vector<std::string> linhas;
 
-		// std::vector<std::string> linhas;
+		try {
+			file.open("./data/Animais.csv");
 
-		// try {
-		// 	file.open("./data/Animais.csv");
+			if(!file) throw FileNotFound(file);
 
-		// 	if(!file) throw FileNotFound(file);
+			while(std::getline(file, linha)) {
+				linhas.push_back(linha);
+			}
 
-		// 	while(std::getline(file, linha)) {
-		// 		linhas.push_back(linha);
-		// 	}
-
-		// 	file.close();
-		// }catch(FileNotFound& e) {
+			file.close();
+		}catch(FileNotFound& e) {
 			
-		// }
+		}
 
-		// for (auto i = linhas.begin(); i < linhas.end(); i++){
+		for (auto i = linhas.begin(); i < linhas.end(); i++){
 
-		// 	std::stringstream ss(*i);
+			std::stringstream ss(*i);
 
-		// 	std::getline(ss, id, ';');
-		// 	std::getline(ss, classe, ';');
-		// 	std::getline(ss, nome, ';');
-		// 	std::getline(ss, cientifico, ';');
-		// 	std::getline(ss, sexo, ';');
-		// 	std::getline(ss, tamanho, ';');
-		// 	std::getline(ss, dieta, ';');
-		// 	std::getline(ss, vet_id, ';');
-		// 	std::getline(ss, trat_id, ';');
-		// 	std::getline(ss, batismo, ';');	
+			std::getline(ss, id, ';');
+			std::getline(ss, classe, ';');
+			std::getline(ss, nome, ';');
+			std::getline(ss, cientifico, ';');
+			std::getline(ss, sexo, ';');
+			std::getline(ss, tamanho, ';');
+			std::getline(ss, dieta, ';');
+			std::getline(ss, vet_id, ';');
+			std::getline(ss, trat_id, ';');
+			std::getline(ss, batismo, ';');	
 
-		// 	for(auto i = mFuncionario.begin(); i != mFuncionario.begin(); i++) {
-		// 		if(vet_id == i->second->getID()) {
-		// 			vet = *i->second;
-		// 		}else if(trat_id == i->second->getID()) {
-		// 			trat = *i->second;
-		// 		}
-		// 	}
+			if(classe == "Amphibia") {
+				std::getline(ss, total_mudas, ';');
+				std::getline(ss, ultima_muda);
 
-		// 	if(classe == "Amphibia") {
-		// 		Anfibio Anf;
-		// 		std::getline(ss, total_mudas, ';');
-		// 		std::getline(ss, ultima_muda);
+				std::getline(ss, idSilvestre, ';');
+
+				if(idSilvestre == "SN") {
+					std::getline(ss, uf, ';');
+					std::getline(ss, autorizacao, ';');
+					std::getline(ss, ibama);
+
+					AnfibioNativo animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setTotalMudas(std::stoi(total_mudas));
+					animal.setUltimaMuda(ultima_muda);
+					animal.setUF(uf);
+					animal.setAutorizacao(autorizacao);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<AnfibioNativo>(animal)));
+				}else if(idSilvestre == "SE") {
+					std::getline(ss, pais, ';');
+					std::getline(ss, ibama);
+
+					AnfibioExotico animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setTotalMudas(std::stoi(total_mudas));
+					animal.setUltimaMuda(ultima_muda);
+					animal.setPais(pais);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<AnfibioExotico>(animal)));
+				}
 			
-		// 	}else if(classe == "Reptilia") {
-		// 		std::getline(ss, venenoso, ';');
-		// 		std::getline(ss, tipo_veneno, ';');
-		// 		bool aux;
+			}else if(classe == "Reptilia") {
+				std::getline(ss, venenoso, ';');
+				bool aux;
 
-		// 		venenoso = "true" ? (aux = true) : (aux = false);
+				venenoso = "true" ? (aux = true) : (aux = false);
+
+				std::getline(ss, idSilvestre, ';');
+
+				if(idSilvestre == "SN") {
+					std::getline(ss, uf, ';');
+					std::getline(ss, autorizacao, ';');
+					std::getline(ss, ibama);
+
+					ReptilNativo animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setVenenoso(aux);
+					animal.setTipoVeneno(tipo_veneno);
+					animal.setUF(uf);
+					animal.setAutorizacao(autorizacao);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<ReptilNativo>(animal)));
+				}else if(idSilvestre == "SE") {
+					std::getline(ss, pais, ';');
+					std::getline(ss, ibama);
+
+					ReptilExotico animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setVenenoso(aux);
+					animal.setTipoVeneno(tipo_veneno);
+					animal.setPais(pais);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<ReptilExotico>(animal)));
+				}
 			
-		// 	}else if(classe == "Ave") {
-		// 		std::getline(ss, tamanho_bico, ';');
-		// 		std::getline(ss, envergadura, ';');
+			}else if(classe == "Ave") {
+				std::getline(ss, tamanho_bico, ';');
+				std::getline(ss, envergadura, ';');
 
-		// 	}else if(classe == "Mammalia") {
-		// 		std::getline(ss, cor_pelo, ';');
-		// 	}
+				std::getline(ss, idSilvestre, ';');
 
-		// 	if(idSilvestre == "SN") {
-		// 		std::getline(ss, uf, ';');
-		// 		std::getline(ss, autorizacao);
-		// 	}else if(idSilvestre == "SE") {
-		// 		std::getline(ss)
-		// 	}
-		// }
+				if(idSilvestre == "SN") {
+					std::getline(ss, uf, ';');
+					std::getline(ss, autorizacao, ';');
+					std::getline(ss, ibama);
+
+					AveNativa animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setTamanhoBico(std::stoi(tamanho_bico));
+					animal.setEnvergadura(std::stoi(envergadura));
+					animal.setUF(uf);
+					animal.setAutorizacao(autorizacao);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<AveNativa>(animal)));
+				}else if(idSilvestre == "SE") {
+					std::getline(ss, pais, ';');
+					std::getline(ss, ibama);
+
+					AveExotica animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setTamanhoBico(std::stoi(tamanho_bico));
+					animal.setEnvergadura(std::stoi(envergadura));
+					animal.setPais(pais);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<AveExotica>(animal)));
+				}
+
+			}else if(classe == "Mammalia") {
+				std::getline(ss, cor_pelo, ';');
+
+				std::getline(ss, idSilvestre, ';');
+
+				if(idSilvestre == "SN") {
+					std::getline(ss, uf, ';');
+					std::getline(ss, autorizacao, ';');
+					std::getline(ss, ibama);
+
+					MamiferoNativo animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setCorPelo(cor_pelo);
+					animal.setUF(uf);
+					animal.setAutorizacao(autorizacao);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<MamiferoNativo>(animal)));
+				}else if(idSilvestre == "SE") {
+					std::getline(ss, pais, ';');
+					std::getline(ss, ibama);
+
+					MamiferoExotico animal;
+
+					animal.setID(std::stoi(id));
+					animal.setClasse(classe);
+					animal.setNome(nome);
+					animal.setCientifico(cientifico);
+					animal.setSexo(sexo[0]);
+					animal.setTamanho(stof(tamanho));
+					animal.setDieta(dieta);
+					animal.setVeterinario(std::stoi(vet_id));
+					animal.setTratador(std::stoi(trat_id));
+					animal.setBatismo(batismo);
+					animal.setCorPelo(cor_pelo);
+					animal.setPais(pais);
+					animal.setIbama(ibama);
+
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(animal.getID(), std::make_shared<MamiferoExotico>(animal)));
+				}
+			}
+
+			
+		}
 	}
 
 	void
@@ -283,12 +461,12 @@ namespace adrd {
 
 					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(reptil.getID(), std::make_shared<ReptilNativo>(reptil)));
 				}else if(silvestre == 2) {
-					// ReptilExotico reptil;
+					ReptilExotico reptil;
 
-					// std::cin >> reptil;
-					// reptil.setClasse(classe);
+					std::cin >> reptil;
+					reptil.setClasse(classe);
 
-					// mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(reptil.getID(), std::make_shared<ReptilExotico>(reptil)));
+					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(reptil.getID(), std::make_shared<ReptilExotico>(reptil)));
 				}
 
 				return true;
@@ -332,6 +510,18 @@ namespace adrd {
 		return false;
 	}
 
+	void
+	mPetFera::removerAnimal(){
+		std::cout << "# Digite o id do animal que deseja remover: ";
+
+		int id;
+
+		id = getInt(std::cin);
+
+		mAnimal.erase(id);
+
+	}
+
 	void 
 	mPetFera::listarAnimais(){
 		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
@@ -344,7 +534,7 @@ namespace adrd {
 		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
 		    op = getInt(std::cin);
 
-		    if(op == 0) exit(0);
+		    if(op == 1) this->menu();
 		}
 	}
 
@@ -366,6 +556,8 @@ namespace adrd {
 
 				std::cin >> *vet;
 
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(vet->getID(), vet));
+
 				vet->save("./data/Funcionarios.csv");
 
 				return true;
@@ -373,6 +565,8 @@ namespace adrd {
 				std::shared_ptr<Funcionario> trat(new Tratador);
 
 				std::cin >> *trat;
+
+				mFuncionario.insert(std::pair<int, std::shared_ptr<Funcionario>>(trat->getID(), trat));
 
 				trat->save("./data/Funcionarios.csv");
 
@@ -397,7 +591,7 @@ namespace adrd {
 		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
 		    op = getInt(std::cin);
 
-		    if(op == 0) exit(0);
+		    if(op == 1) this->menu();
 		}
 	}
 
@@ -411,10 +605,14 @@ namespace adrd {
 		return this->mAnimal;
 	}
 
-	// std::ostream& operator<<(std::ostream& out, mPetFera& main){
-	// 	for(auto i = main.getAnimais().begin(); i < main.getAnimais().end(); i++) {
-	// 		*i->second.save(out);
-	// 	}
-	// }
+	void
+	mPetFera::printAnimais(){
+
+		std::ofstream out("./data/Animais.csv");
+
+		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
+			i->second->save(out);
+		}
+	}
 
 } // adrd

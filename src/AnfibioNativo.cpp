@@ -32,12 +32,10 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	AnfibioNativo::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
-
-		if(file) {
-			file << this->id << ";" 
+	std::ostream& 
+	AnfibioNativo::save(std::ostream& out){
+		
+		out << this->id << ";" 
 				<< this->classe << ";" 
 				<< this->nome << ";" 
 				<< this->sexo << ";" 
@@ -48,12 +46,12 @@ namespace adrd {
 				<< this->tratador << ";" 
 				<< this->batismo << ";" 
 				<< this->total_mudas << ";" 
-				<< this->ultima_muda << std::endl;
-		}
+				<< this->ultima_muda << ";"
+				<< this->uf_origem << ";"
+				<< this->autorizacao << ";"
+				<< this->ibama << std::endl;
 
-		std::cout << "Animal cadastrado..." << std::endl << std::endl;
-
-		file.close();
+		return out;
 
 	}
 

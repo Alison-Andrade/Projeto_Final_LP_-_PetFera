@@ -83,7 +83,7 @@ namespace adrd {
 		friend std::istream& operator>>(std::istream& in, Animal& a);
 		friend std::ostream& operator<<(std::ostream& out, Animal& a);
 
-		virtual void save(std::string sf) = 0;
+		virtual std::ostream& save(std::ostream& out) = 0;
 	};
 
 } // adrd

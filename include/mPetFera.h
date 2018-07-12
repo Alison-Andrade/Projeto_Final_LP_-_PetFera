@@ -42,10 +42,9 @@ namespace adrd {
 	private:
 		void menu();
 		bool cadastrarAnimal();
-		//void removerAnimal();
+		void removerAnimal();
 		void listarAnimais();
 		bool cadastrarFuncionario();
-		//void removerFuncionario();
 		void listarFunionarios();
 
 	protected:
@@ -54,6 +53,7 @@ namespace adrd {
 		
 		void loadAnimais();
 		void loadFuncionarios();
+		void printAnimais();
 		
 
 	public:

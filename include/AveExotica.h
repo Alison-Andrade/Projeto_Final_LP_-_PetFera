@@ -13,7 +13,7 @@ namespace adrd {
 	public:
 		AveExotica();
 
-		void save(std::string sf);
+		std::ostream& save(std::ostream& out);
 	};
 
 } // adrd

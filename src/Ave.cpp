@@ -55,26 +55,23 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	Ave::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
+	std::ostream& 
+	Ave::save(std::ostream& out){
+		
+		out << this->id << ";" 
+				<< this->classe << ";" 
+				<< this->nome << ";" 
+				<< this->sexo << ";" 
+				<< this->cientifico << ";" 
+				<< this->tamanho << ";" 
+				<< this->dieta << ";" 
+				<< this->veterinario << ";" 
+				<< this->tratador << ";" 
+				<< this->batismo << ";" 
+				<< this->tamanho_bico << ";" 
+				<< this->envergadura << std::endl;
 
-		if(file) {
-			file << this->id
-				<< ";" << this->classe
-				<< ";" << this->nome
-				<< ";" << this->sexo
-				<< ";" << this->cientifico
-				<< ";" << this->tamanho
-				<< ";" << this->dieta
-				<< ";" << this->veterinario
-				<< ";" << this->tratador
-				<< ";" << this->batismo
-				<< ";" << this->tamanho_bico
-				<< ";" << this->envergadura << std::endl;
-		}
-
-		file.close();
+		return out;
 
 	}
 

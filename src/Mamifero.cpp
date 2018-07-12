@@ -40,12 +40,10 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	Mamifero::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
-
-		if(file) {
-			file << this->id
+	std::ostream& 
+	Mamifero::save(std::ostream& out){
+		
+		out << this->id
 				<< ";" << this->classe
 				<< ";" << this->nome
 				<< ";" << this->sexo
@@ -56,9 +54,8 @@ namespace adrd {
 				<< ";" << this->tratador
 				<< ";" << this->batismo
 				<< ";" << this->cor_pelo << std::endl;
-		}
 
-		file.close();
+		return out;
 
 	}
 

@@ -32,12 +32,10 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	AveNativa::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
-
-		if(file) {
-			file << this->id
+	std::ostream& 
+	AveNativa::save(std::ostream& out){
+		
+		out << this->id
 				<< ";" << this->classe
 				<< ";" << this->nome
 				<< ";" << this->sexo
@@ -48,10 +46,12 @@ namespace adrd {
 				<< ";" << this->tratador
 				<< ";" << this->batismo
 				<< ";" << this->tamanho_bico
-				<< ";" << this->envergadura << std::endl;
-		}
+				<< ";" << this->envergadura << ";"
+				<< this->uf_origem << ";"
+				<< this->autorizacao << ";"
+				<< this->ibama << std::endl;
 
-		file.close();
+		return out;
 
 	}
 

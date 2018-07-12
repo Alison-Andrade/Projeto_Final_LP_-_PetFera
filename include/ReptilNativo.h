@@ -1,5 +1,5 @@
-#ifndef REPTIL_EXOTICO_H
-#define REPTIL_EXOTICO_H
+#ifndef REPTIL_NATIVO_H
+#define REPTIL_NATIVO_H
 
 #include "Reptil.h"
 #include "Nativo.h"
@@ -13,7 +13,7 @@ namespace adrd {
 	public:
 		ReptilNativo();
 
-		void save(std::string sf);
+		std::ostream& save(std::ostream& out);
 	};
 
 } // adrd

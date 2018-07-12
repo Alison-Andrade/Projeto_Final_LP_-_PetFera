@@ -69,12 +69,10 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	Reptil::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
-
-		if(file) {
-			file << this->id
+	std::ostream& 
+	Reptil::save(std::ostream& out){
+		
+		out << this->id
 				<< ";" << this->classe
 				<< ";" << this->nome
 				<< ";" << this->sexo
@@ -87,8 +85,7 @@ namespace adrd {
 				<< ";" << this->venenoso
 				<< ";" << this->tipo_veneno << std::endl;
 
-		}
-		file.close();
+		return out;
 
 	}
 

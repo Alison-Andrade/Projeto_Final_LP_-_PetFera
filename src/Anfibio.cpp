@@ -55,28 +55,23 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	Anfibio::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
+	std::ostream& 
+	Anfibio::save(std::ostream& out){
+		
+		out << this->id << ";" 
+			<< this->classe << ";" 
+			<< this->nome << ";" 
+			<< this->sexo << ";" 
+			<< this->cientifico << ";" 
+			<< this->tamanho << ";" 
+			<< this->dieta << ";" 
+			<< this->veterinario << ";" 
+			<< this->tratador << ";" 
+			<< this->batismo << ";" 
+			<< this->total_mudas << ";" 
+			<< this->ultima_muda << std::endl;
 
-		if(file) {
-			file << this->id << ";" 
-				<< this->classe << ";" 
-				<< this->nome << ";" 
-				<< this->sexo << ";" 
-				<< this->cientifico << ";" 
-				<< this->tamanho << ";" 
-				<< this->dieta << ";" 
-				<< this->veterinario << ";" 
-				<< this->tratador << ";" 
-				<< this->batismo << ";" 
-				<< this->total_mudas << ";" 
-				<< this->ultima_muda << std::endl;
-		}
-
-		std::cout << "Animal cadastrado..." << std::endl << std::endl;
-
-		file.close();
+		return out;
 
 	}
 

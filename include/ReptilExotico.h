@@ -13,7 +13,7 @@ namespace adrd {
 	public:
 		ReptilExotico();
 
-		void save(std::string sf);
+		std::ostream& save(std::ostream& out);
 	};
 
 } // adrd

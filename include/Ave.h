@@ -35,7 +35,7 @@ namespace adrd {
 		void setTamanhoBico(int tamanho_bico_);
 		void setEnvergadura(int envergadura_);
 
-		virtual void save(std::string sf);
+		virtual std::ostream& save(std::ostream& out);
 	};
 
 } // adrd

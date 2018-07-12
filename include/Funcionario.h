@@ -61,6 +61,8 @@ namespace adrd {
 		 */
 		static int getCounter();
 
+		int getID();
+
 		//Sobrecarga de operadores
 		friend std::ostream& operator<<(std::ostream& out, Funcionario& f);
 		friend std::istream& operator>>(std::istream& in, Funcionario& f);

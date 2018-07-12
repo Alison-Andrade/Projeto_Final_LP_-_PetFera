@@ -18,19 +18,20 @@ namespace adrd {
 		std::string uf_origem;
 		std::string autorizacao;
 	public:
-		Nativo(){};
+		Nativo();
 		virtual ~Nativo() = 0;
 
-		// //getters
-		// std::string getUF();
-		// std::string getAutorizacao();
+		//getters
+		std::string getUF();
+		std::string getAutorizacao();
 
-		// //setters
-		// void setUF(std::string uf_);
-		// void stdAutorizacao(std::string autorizacao_);
+		//setters
+		void setUF(std::string uf_);
+		void setAutorizacao(std::string autorizacao_);
 	};
 
-	inline Nativo::~Nativo(){}
+	inline Nativo::~Nativo()
+	{}
 
 } // adrd
 

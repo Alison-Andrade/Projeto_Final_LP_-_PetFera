@@ -45,26 +45,25 @@ namespace adrd {
 		return in;
 	}
 
-	void 
-	ReptilExotico::save(std::string sf){
-		std::ofstream file(sf, std::ofstream::app);
+	std::ostream& 
+	ReptilExotico::save(std::ostream& out){
+		
+		out << this->id << ";" 
+			<< this->classe << ";" 
+			<< this->nome << ";" 
+			<< this->sexo << ";" 
+			<< this->cientifico << ";" 
+			<< this->tamanho << ";" 
+			<< this->dieta << ";" 
+			<< this->veterinario << ";" 
+			<< this->tratador << ";" 
+			<< this->batismo << ";" 
+			<< this->venenoso << ";" 
+			<< this->tipo_veneno << ";"
+			<< this->pais_origem << ";"
+			<< this->ibama << std::endl;
 
-		if(file) {
-			file << this->id
-				<< ";" << this->classe
-				<< ";" << this->nome
-				<< ";" << this->sexo
-				<< ";" << this->cientifico
-				<< ";" << this->tamanho
-				<< ";" << this->dieta
-				<< ";" << this->veterinario
-				<< ";" << this->tratador
-				<< ";" << this->batismo
-				<< ";" << this->venenoso
-				<< ";" << this->tipo_veneno << std::endl;
-
-		}
-		file.close();
+		return out;
 
 	}
 

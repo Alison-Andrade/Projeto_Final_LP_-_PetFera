@@ -9,6 +9,8 @@
 #ifndef ANIMAL_SILVESTRE_H
 #define ANIMAL_SILVESTRE_H
 
+#include <iostream>
+
 namespace adrd {
 	/**
 	 * @brief 
@@ -26,16 +28,15 @@ namespace adrd {
 		 * @brief Construtor da classe AnimalSilvestre
 		 * @details 
 		 */
-		AnimalSilvestre(){
-
-		};
+		AnimalSilvestre();
 		virtual ~AnimalSilvestre() = 0;
 
-		// void setIbama(std::string ibama_);
-		// std::string getIbama();
+		void setIbama(std::string ibama_);
+		std::string getIbama();
 	};
 
-	inline AnimalSilvestre::~AnimalSilvestre(){}
+	inline AnimalSilvestre::~AnimalSilvestre()
+	{}
 
 } // adrd
 
