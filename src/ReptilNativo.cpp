@@ -63,6 +63,7 @@ namespace adrd {
 				<< ";" << this->batismo
 				<< ";" << this->venenoso
 				<< ";" << this->tipo_veneno << ";"
+				<< "SN;"
 				<< this->uf_origem << ";"
 				<< this->autorizacao << ";"
 				<< this->ibama << std::endl;

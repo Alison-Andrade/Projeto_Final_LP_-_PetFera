@@ -39,8 +39,8 @@ namespace adrd {
 
 	std::ostream&
 	Ave::print(std::ostream& out){
-		out << "# Tamanho do bico: " << this->tamanho_bico << std::endl
-			<< "# Envergadura: " << this->envergadura << std::endl;
+		out << "# Tamanho do bico: " << this->tamanho_bico << " cm" << std::endl
+			<< "# Envergadura: " << this->envergadura << " cm" << std::endl;
 
 		return out;
 	}

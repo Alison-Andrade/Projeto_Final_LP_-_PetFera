@@ -37,11 +37,10 @@ namespace adrd {
 					<< "(3) Remover animal" << std::endl
 					<< "(4) Listar funcionários" << std::endl
 					<< "(5) Cadastrar novo funcionário" << std::endl
-					<< "(6) Remover funcionário" << std::endl
 					<< "(0) Sair" << std::endl << std::endl
 					<< "Opção: ";
 
-		while(op < 0 || op > 6) {
+		while(op < 0 || op > 5) {
 		    op = getInt(std::cin);
 		}
 
@@ -127,8 +126,8 @@ namespace adrd {
 			std::getline(ss, id, ';');
 			std::getline(ss, classe, ';');
 			std::getline(ss, nome, ';');
-			std::getline(ss, cientifico, ';');
 			std::getline(ss, sexo, ';');
+			std::getline(ss, cientifico, ';');
 			std::getline(ss, tamanho, ';');
 			std::getline(ss, dieta, ';');
 			std::getline(ss, vet_id, ';');
@@ -137,7 +136,7 @@ namespace adrd {
 
 			if(classe == "Amphibia") {
 				std::getline(ss, total_mudas, ';');
-				std::getline(ss, ultima_muda);
+				std::getline(ss, ultima_muda, ';');
 
 				std::getline(ss, idSilvestre, ';');
 
@@ -151,8 +150,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -174,8 +173,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -192,8 +191,9 @@ namespace adrd {
 			}else if(classe == "Reptilia") {
 				std::getline(ss, venenoso, ';');
 				bool aux;
-
 				venenoso = "true" ? (aux = true) : (aux = false);
+				
+				std::getline(ss, tipo_veneno, ';');
 
 				std::getline(ss, idSilvestre, ';');
 
@@ -207,8 +207,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -230,8 +230,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -261,8 +261,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -284,8 +284,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -314,8 +314,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -336,8 +336,8 @@ namespace adrd {
 					animal.setID(std::stoi(id));
 					animal.setClasse(classe);
 					animal.setNome(nome);
-					animal.setCientifico(cientifico);
 					animal.setSexo(sexo[0]);
+					animal.setCientifico(cientifico);
 					animal.setTamanho(stof(tamanho));
 					animal.setDieta(dieta);
 					animal.setVeterinario(std::stoi(vet_id));
@@ -351,7 +351,7 @@ namespace adrd {
 				}
 			}
 
-			
+		
 		}
 	}
 
@@ -561,7 +561,7 @@ namespace adrd {
 				vet->save("./data/Funcionarios.csv");
 
 				return true;
-			}else if(funcao == "reptil" || funcao == "réptil") {
+			}else if(funcao == "tratador") {
 				std::shared_ptr<Funcionario> trat(new Tratador);
 
 				std::cin >> *trat;
@@ -573,6 +573,7 @@ namespace adrd {
 				return true;
 			}else {
 				std::cout << "Função desconhecida, insira uma nova entrada: ";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			}
 		}
 
@@ -613,6 +614,8 @@ namespace adrd {
 		for (auto i = mAnimal.begin(); i != mAnimal.end(); i++){
 			i->second->save(out);
 		}
+
+		out.close();
 	}
 
 } // adrd

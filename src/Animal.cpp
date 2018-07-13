@@ -138,7 +138,8 @@ namespace adrd {
 		in >> a.sexo;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Tamanho: ";
-		a.tamanho = getInt(in);
+		in >> a.tamanho;
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "# Dieta: ";
 		std::getline(in, a.dieta);
 		std::cout << "# ID do veterinario responsavel (0 = sem veterinario): ";
@@ -161,7 +162,7 @@ namespace adrd {
 			<< "# Nome: " << a.nome << std::endl
 			<< "# Sexo: " << a.sexo << std::endl
 			<< "# Nome Cientifico: " << a.cientifico << std::endl
-			<< "# Tamanho: " << a.tamanho << std::endl
+			<< "# Tamanho: " << a.tamanho << " m" << std::endl
 			<< "# Dieta: " << a.dieta << std::endl
 			<< "# ID do Veterinario: ";
 			a.veterinario == 0 ? out << "Sem veterinario responsavel" << std::endl : out << a.veterinario << std::endl;

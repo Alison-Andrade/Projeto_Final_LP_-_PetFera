@@ -47,6 +47,7 @@ namespace adrd {
 				<< this->batismo << ";" 
 				<< this->total_mudas << ";" 
 				<< this->ultima_muda << ";"
+				<< "SN;"
 				<< this->uf_origem << ";"
 				<< this->autorizacao << ";"
 				<< this->ibama << std::endl;

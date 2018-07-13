@@ -44,6 +44,7 @@ namespace adrd {
 			<< this->batismo << ";" 
 			<< this->total_mudas << ";" 
 			<< this->ultima_muda << ";"
+			<< "SE;"
 			<< this->pais_origem << ";"
 			<< this->ibama << std::endl;
 

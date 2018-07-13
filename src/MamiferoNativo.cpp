@@ -43,6 +43,7 @@ namespace adrd {
 				<< ";" << this->tratador
 				<< ";" << this->batismo
 				<< ";" << this->cor_pelo << ";"
+				<< "SN;"
 				<< this->uf_origem << ";"
 				<< this->autorizacao << ";"
 				<< this->ibama << std::endl;

@@ -7,8 +7,8 @@ namespace adrd {
 
 	std::ostream&
 	AveExotica::print(std::ostream& out){
-		out << "# Tamanho do bico: " << this->tamanho_bico << std::endl
-			<< "# Envergadura: " << this->envergadura << std::endl
+		out << "# Tamanho do bico: " << this->tamanho_bico << " cm" << std::endl
+			<< "# Envergadura: " << this->envergadura << " cm" << std::endl
 			<< "# País de origem: " << this->pais_origem << std::endl
 			<< "# Classificação no IBAMA: " << this->ibama << std::endl;
 
@@ -44,6 +44,7 @@ namespace adrd {
 			<< this->batismo << ";" 
 			<< this->tamanho_bico << ";" 
 			<< this->envergadura << ";"
+			<< "SE;"
 			<< this->pais_origem << ";"
 			<< this->ibama << std::endl;
 

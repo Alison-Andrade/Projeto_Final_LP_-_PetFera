@@ -11,33 +11,31 @@ void showHelp(){
 				<< "	Obrigatoriamente deve-se passar o nome de um arquivo de saida" << std::endl;
 }
 
-int main(int argc, char const *argv[]){
+int main(int argc, char *argv[]){
 
 	if(argc < 3) {
 		showHelp();
 		exit(-1);
 	}
-	
-	int cFlag(0), vFlag(0), tFlag(0), opt;
+
+	int opt;
 
 	std::string classe = "";
 	std::string tratador = "";
 	std::string veterinario = "";
 	std::string arquivo = "";
 
-	while((opt = getopt(argc, argv, "c:v:t:")) != -1) {
+	while((opt = getopt(argc, argv, "c:v:t:")) > 0) {
 	    switch(opt){
 	    	case 'c':
-	    		cFlag = 1;
 	    		classe = optarg;
 	    		break;
 	    	case 'v':
-	    		vFlag = 1;
 	    		veterinario = optarg;
 	    		break;
 	    	case 't':
-	    		tFlag = 1;
 	    		tratador = optarg;
+	    		break;
 	    }
 	}
 	if((argv[optind] != NULL)) arquivo = argv[optind];
@@ -46,6 +44,12 @@ int main(int argc, char const *argv[]){
 	adrd::Exportar exp;
 
 	exp(classe, tratador, veterinario);
+
+	std::ofstream p(arquivo);
+
+	p << exp;
+
+	p.close();
 
 
 	return 0;
