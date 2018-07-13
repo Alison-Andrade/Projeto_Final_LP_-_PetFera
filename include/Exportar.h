@@ -21,6 +21,8 @@ namespace adrd {
 
 		void operator()(std::string classe, std::string tratador, std::string veterinario);
 
+		std::map<int, std::shared_ptr<Animal>> getExportados();
+
 		friend std::ostream& operator<<(std::ostream& out, Exportar& exp);
 	};
 

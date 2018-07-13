@@ -7,10 +7,6 @@ namespace adrd {
 	}
 
 	mPetFera::~mPetFera(){
-		std::cout << "Salvando dados em arquivo..." << std::endl;
-		this->printAnimais();
-		std::cout << "Encerrando." << std::endl;
-
 		mAnimal.clear();
 		mFuncionario.clear();
 	}
@@ -46,6 +42,9 @@ namespace adrd {
 
 		switch(op){
 			case 0:
+				std::cout << "Salvando dados em arquivo..." << std::endl;
+				this->printAnimais();
+				std::cout << "Encerrando." << std::endl;
 				break;
 			case 1:
 				this->listarAnimais();
@@ -475,12 +474,14 @@ namespace adrd {
 					AveNativa ave;
 
 					std::cin >> ave;
+					ave.setClasse(classe);
 
 					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(ave.getID(), std::make_shared<AveNativa>(ave)));
 				}else if(silvestre == 2) {
 					AveExotica ave;
 
 					std::cin >> ave;
+					ave.setClasse(classe);
 
 					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(ave.getID(), std::make_shared<AveExotica>(ave)));
 				}
@@ -491,12 +492,14 @@ namespace adrd {
 					AnfibioNativo anfibio;
 
 					std::cin >> anfibio;
+					anfibio.setClasse(classe);
 
 					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(anfibio.getID(), std::make_shared<AnfibioNativo>(anfibio)));
 				}else if(silvestre == 2) {
 					AnfibioExotico anfibio;
 
 					std::cin >> anfibio;
+					anfibio.setClasse(classe);
 
 					mAnimal.insert(std::pair<int, std::shared_ptr<Animal>>(anfibio.getID(), std::make_shared<AnfibioExotico>(anfibio)));
 				}
@@ -534,7 +537,13 @@ namespace adrd {
 		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
 		    op = getInt(std::cin);
 
-		    if(op == 1) this->menu();
+		    if(op == 1) {
+		    	this->menu();
+		    }else{
+				std::cout << "Salvando dados em arquivo..." << std::endl;
+				this->printAnimais();
+				std::cout << "Encerrando." << std::endl;
+		    }
 		}
 	}
 
@@ -592,7 +601,13 @@ namespace adrd {
 		    std::cout << "# (0) Sair e (1) Voltar ao menu: ";
 		    op = getInt(std::cin);
 
-		    if(op == 1) this->menu();
+		    if(op == 1) {
+		    	this->menu();
+		    }else{
+				std::cout << "Salvando dados em arquivo..." << std::endl;
+				this->printAnimais();
+				std::cout << "Encerrando." << std::endl;
+		    }
 		}
 	}
 

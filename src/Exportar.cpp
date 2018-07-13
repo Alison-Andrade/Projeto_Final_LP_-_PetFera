@@ -7,6 +7,9 @@ namespace adrd {
 
 	void
 	Exportar::operator()(std::string classe, std::string tratador, std::string veterinario){
+			
+		this->loadAnimais();
+
 		int c(0), v(0), t(0);
 		if (classe != "") c = 1;
 		if (tratador != "") t = 1;
@@ -57,9 +60,15 @@ namespace adrd {
 		}
 	}
 
+	std::map<int, std::shared_ptr<Animal>> 
+	Exportar::getExportados(){
+		return this->expotMap;
+	}
+
 	std::ostream& operator<<(std::ostream& out, Exportar& exp){
 
-		for (auto i = exp.getAnimais().begin(); i != exp.getAnimais().end(); i++){
+		for (auto i = exp.getExportados().begin(); i != exp.getExportados().end(); i++){
+
 			i->second->save(out);
 		}
 
